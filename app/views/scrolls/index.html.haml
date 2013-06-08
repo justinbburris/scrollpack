@@ -1,10 +1,12 @@
 #deck-builder
 
-%script{type: 'text/html', id: 'deck_builder'}
-  = render 'scrolls/templates/deck_builder'
+%script{type: "text/html", id: "deck_builder"}
+  #scrolls-list
+  #deck
 
-%script{type: 'text/html', id: 'scroll_list'}
-  = render 'scrolls/templates/scroll_list'
+%script{type: "text/html", id: "scroll_list"}
+  %ul
 
-%script{type: 'text/html', id: 'scroll_list_item'}
-  = render 'scrolls/templates/scroll_list_item'
+%script{type: "text/html", id: "scroll_list_item"}
+  %li
+    {{name}}
