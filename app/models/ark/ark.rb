@@ -1,7 +1,6 @@
 require 'digest/md5'
-require_relative 'scroll_parser'
 
-class Ark
+class Ark::Ark
   @@URL = 'http://www.scrollsguide.com/wiki/index.php/Scrolls_Database'
   # this is a real loose selector, they don't give much else to go on
 

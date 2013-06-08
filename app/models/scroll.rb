@@ -9,6 +9,9 @@ class Scroll < ActiveRecord::Base
   RARITY_COMMON = 'Common'
   RARITY_RARE   = 'Rare'
 
-  RESOURCE_ENERGY = 'Energy'
-  RESOURCE_GROWTH = 'Growth'
+  RESOURCE = {
+    ENERGY: 'Energy',
+    GROWTH: 'Growth',
+    ORDER:  'Order'
+  }
 end
