@@ -1,4 +1,4 @@
-Scrolls.Views.DeckScrollListItem = Backbone.View.extend({
+Scrolls.Views.DeckScrollView = Backbone.View.extend({
 
   tagName: 'li',
 
@@ -9,20 +9,18 @@ Scrolls.Views.DeckScrollListItem = Backbone.View.extend({
   },
 
   initialize: function(opts) {
-    this.scroll     = opts.scroll;
-    this.scrollList = opts.scrollList;
-    this.template   = ich.deck_scroll_list_item;
+    this.scroll      = opts.scroll;
+    this.deckScrolls = opts.deckScrolls;
+    this.template    = ich.deck_scroll;
   },
 
   removeScroll: function() {
-    this.scrollList.remove(this.scroll);
+    this.deckScrolls.remove(this.scroll);
     this.remove();
   },
 
   render: function() {
     this.$el.html(this.template(this.scroll.toJSON()));
-
-    this.$el.data('id', this.scroll.get('id'));
 
     return this;
   }
