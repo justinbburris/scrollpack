@@ -5,14 +5,8 @@ Scrolls.Router = Backbone.Router.extend({
   },
 
   index: function() {
-    var scrolls    = new Scrolls.Collections.ScrollCollection();
-    var scrollList = new Scrolls.Views.ScrollList({collection: scrolls});
+    var deckBuilder = new Scrolls.Views.DeckBuilder();
 
-    scrolls.fetch({
-      reset: true,
-      success: function() {
-        $('#scrolls-list').html(scrollList.render().el);
-      }
-    });
+    $('#deck-builder').html(deckBuilder.render().el);
   }
 });
