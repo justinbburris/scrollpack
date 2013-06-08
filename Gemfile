@@ -14,6 +14,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'httparty', '~> 0.11.0'
+
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
