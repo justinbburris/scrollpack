@@ -1,5 +1,8 @@
 //= require ./scrolls_backbone_init
-//= require_tree .
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_directory .
 
 // Let's start this up!
 $(function() {
