@@ -15,7 +15,7 @@ Scrolls.Views.GameScrollView = Backbone.View.extend({
   },
 
   addScrollToDeck: function() {
-    this.deckScrolls.add(scroll);
+    this.deckScrolls.add(this.scroll);
   },
 
   render: function() {
