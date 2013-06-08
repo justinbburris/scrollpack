@@ -7,18 +7,25 @@
 
 %script{type: "text/html", id: "deck_builder"}
   .row
-    #scrolls-filter.span3
+    #scrolls-filter.span2
       %h4 Filter
-    #scrolls-list.span6
+      %ul.scroll-picker.filter
+        %li
+          one
+        %li
+          two
+        %li
+          three
+    #scrolls-list.span8
   .row
-    #deck-options.span9
+    #deck-options.span10
   .row
-    #deck-scrolls.span9
+    #deck-scrolls.span10
 
 %script{type: "text/html", id: "scroll_list"}
   %h4 Scrolls
-  %ul
+  %ul.scroll-picker.scroll-list
 
 %script{type: "text/html", id: "scroll_list_item"}
-  %li
+  %div
     {{name}}
