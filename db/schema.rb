@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608030100) do
+ActiveRecord::Schema.define(:version => 20130608062004) do
+
+  create_table "parser_checksums", :force => true do |t|
+    t.string   "checksum"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "scrolls", :force => true do |t|
     t.string   "name"
