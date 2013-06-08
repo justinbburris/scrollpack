@@ -9,7 +9,7 @@
   .row
     #scrolls-filter.span2
       %h4 Filter
-      %ul.scroll-picker.filter
+      %ul.scroll-picker
         %li
           one
         %li
@@ -18,13 +18,16 @@
           three
     #scrolls-list.span8
   .row
-    #deck-options.span10
+    #deck-options.span10.padded-span10
+      %p Some stuff about the deck goes here
   .row
     #deck-scrolls.span10
+      %p The deck itself
+      %ul.scroll-picker
 
 %script{type: "text/html", id: "scroll_list"}
   %h4 Scrolls
-  %ul.scroll-picker.scroll-list
+  %ul.scroll-picker
 
 %script{type: "text/html", id: "scroll_list_item"}
   %div
