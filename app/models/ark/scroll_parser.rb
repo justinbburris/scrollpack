@@ -14,9 +14,15 @@ class Ark::ScrollParser
   ]
 
   @@COST_TYPE = {
-    'G' => Scroll::RESOURCE[:GROWTH],
-    'E' => Scroll::RESOURCE[:ENERGY],
-    'O' => Scroll::RESOURCE[:ORDER]
+    'G' => Scroll::RESOURCE_GROWTH,
+    'E' => Scroll::RESOURCE_ENERGY,
+    'O' => Scroll::RESOURCE_ORDER
+  }
+
+  @@RARITY_TYPE = {
+    'R' => Scroll::RARITY_RARE,
+    'C' => Scroll::RARITY_COMMON,
+    'U' => Scroll::RARITY_UNCOMMON
   }
 
   def initialize(table)
@@ -33,14 +39,14 @@ class Ark::ScrollParser
 
   def massage_values(element)
     attrs = {}
-
     element.css('td').each_with_index do |cell, index|
       cell = cell.text.strip
       attr_name = @@POSITION_ATTR_MAP[index]
       if attr_name == :cost
         type, cell = cell[0].upcase, cell[1..cell.length]
-        puts type, cell
         attrs[:resource_type] = @@COST_TYPE[type]
+      elsif attr_name == :rarity
+        cell = @@RARITY_TYPE[cell]
       end
 
       attrs[attr_name] = cell
