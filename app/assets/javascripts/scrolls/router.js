@@ -1,12 +1,20 @@
 Scrolls.Router = Backbone.Router.extend({
 
   routes: {
+    'decks/new': 'newDeck',
     '': 'index'
   },
 
-  index: function() {
+  newDeck: function() {
     var deckBuilder = new Scrolls.Views.DeckBuilder();
 
-    $('#deck-builder').html(deckBuilder.render().el);
+    $('#app').html(deckBuilder.render().el);
+  },
+
+  index: function() {
+    var mainView = new Scrolls.Views.MainView();
+
+    $('#app').html(mainView.render().el);
   }
+
 });
