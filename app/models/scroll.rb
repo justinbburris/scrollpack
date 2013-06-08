@@ -31,4 +31,5 @@ class Scroll < ActiveRecord::Base
   RESOURCE_ENERGY   = 'Energy'
   RESOURCE_GROWTH   = 'Growth'
   RESOURCE_ORDER    = 'Order'
+
 end
