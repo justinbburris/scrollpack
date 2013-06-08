@@ -12,10 +12,13 @@ Scrolls.Views.DeckScrollView = Backbone.View.extend({
     this.scroll      = opts.scroll;
     this.deckScrolls = opts.deckScrolls;
     this.template    = ich.deck_scroll;
+
+    this.listenTo(this.scroll, 'change:count', this.render);
   },
 
   removeScroll: function() {
     this.deckScrolls.remove(this.scroll);
+
     this.remove();
   },
 

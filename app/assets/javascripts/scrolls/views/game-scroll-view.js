@@ -15,7 +15,12 @@ Scrolls.Views.GameScrollView = Backbone.View.extend({
   },
 
   addScrollToDeck: function() {
-    this.deckScrolls.add(this.scroll);
+    var scroll = this.deckScrolls.get(this.scroll);
+    if(scroll !== undefined) {
+      scroll.set('count', scroll.get('count') + 1);
+    } else {
+      this.deckScrolls.add(this.scroll.clone());
+    }
   },
 
   render: function() {
