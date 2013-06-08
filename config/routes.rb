@@ -1,5 +1,7 @@
 ScrollsBuilder::Application.routes.draw do
 
+  resources :scrolls
+
   root :to => 'main#index'
 
   # The priority is based upon order of creation:

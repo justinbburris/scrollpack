@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require_tree .
+//= require mustache
+//= require underscore
+//= require backbone
+//= require icanhaz-no-mustache
+//= require scrolls/index
