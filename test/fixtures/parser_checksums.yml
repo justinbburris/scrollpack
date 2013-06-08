@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  checksum: MyString
+  when: 2013-06-07 23:20:04
+
+two:
+  checksum: MyString
+  when: 2013-06-07 23:20:04
