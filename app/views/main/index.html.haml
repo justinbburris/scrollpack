@@ -6,10 +6,17 @@
   %a#new-deck{href: '#decks/new'} New Deck
 
 %script{type: "text/html", id: "deck_builder"}
-  #scrolls-list
-  #deck
+  .row
+    #scrolls-filter.span3
+      %h4 Filter
+    #scrolls-list.span6
+  .row
+    #deck-options.span9
+  .row
+    #deck-scrolls.span9
 
 %script{type: "text/html", id: "scroll_list"}
+  %h4 Scrolls
   %ul
 
 %script{type: "text/html", id: "scroll_list_item"}
