@@ -5,9 +5,9 @@ Scrolls.Router = Backbone.Router.extend({
   },
 
   index: function() {
-    var scrolls    = new Scrolls.Models.ScrollCollection();
+    var scrolls    = new Scrolls.Collections.ScrollCollection();
     var scrollList = new Scrolls.Views.ScrollList({collection: scrolls});
 
-    scrollList.render();
+    $('#scrolls-list').html(scrollList.render().el);
   }
 });
