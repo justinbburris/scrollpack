@@ -1,11 +1,13 @@
 Scrolls.Views.DeckScrolls = Backbone.View.extend({
 
   initialize: function(opts) {
-    this.deck     = opts.deck;
-    this.scrolls  = opts.scrolls;
-    this.template = ich.deck_scrolls;
+    this.deck       = opts.deck;
+    this.scrollList = this.deck.get('scrollList');
+    this.scrolls    = opts.scrolls;
+    this.template   = ich.deck_scrolls;
 
     this.listenTo(this.deck, 'reset', this.addScrolls);
+    this.listenTo(this.scrollList, 'add', this.addedScroll);
   },
 
   addScrolls: function() {
@@ -18,6 +20,11 @@ Scrolls.Views.DeckScrolls = Backbone.View.extend({
     });
 
     this.$('ul').html(scrolls);
+  },
+
+  addedScroll: function(scroll) {
+    var scrollListItem = new Scrolls.Views.ScrollListItem({scroll: scroll});
+    this.$('ul').append(scrollListItem.render().el);
   },
 
   render: function() {

@@ -1,7 +1,10 @@
 Scrolls.Models.Deck = Backbone.Model.extend({
 
-  defaults: {
-    name: 'New Deck'
+  defaults: function() {
+    return {
+      name: 'New Deck',
+      scrollList: new Scrolls.Collections.ScrollCollection()
+    }
   },
 
   url: '/decks'
