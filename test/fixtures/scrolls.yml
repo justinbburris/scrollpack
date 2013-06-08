@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  scroll_id: 1
+  type: 
+  subtype: MyString
+  rarity: MyString
+  cost: 1
+  resource_type: MyString
+  attack: 1
+  countdown: 1
+  health: 1
+  ability: MyText
+  flavor_text: MyText
+
+two:
+  name: MyString
+  scroll_id: 1
+  type: 
+  subtype: MyString
+  rarity: MyString
+  cost: 1
+  resource_type: MyString
+  attack: 1
+  countdown: 1
+  health: 1
+  ability: MyText
+  flavor_text: MyText
