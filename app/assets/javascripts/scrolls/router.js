@@ -6,7 +6,9 @@ Scrolls.Router = Backbone.Router.extend({
   },
 
   newDeck: function() {
-    var deckBuilder = new Scrolls.Views.DeckBuilder();
+    var deck        = new Scrolls.Models.Deck();
+    var scrolls     = new Scrolls.Collections.ScrollCollection();
+    var deckBuilder = new Scrolls.Views.DeckBuilder({scrolls: scrolls, deck: deck});
 
     $('#app').html(deckBuilder.render().el);
   },
