@@ -10,8 +10,8 @@ Scrolls.Views.ScrollList = Backbone.View.extend({
   addScrolls: function() {
     var scrolls = [];
 
-    this.scrolls.each(function(model) {
-      var scrollListItem = new Scrolls.Views.ScrollListItem({model: model});
+    this.scrolls.each(function(scroll) {
+      var scrollListItem = new Scrolls.Views.ScrollListItem({scroll: scroll});
       scrolls.push(scrollListItem.render().el);
     });
 

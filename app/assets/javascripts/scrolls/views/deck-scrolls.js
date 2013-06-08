@@ -13,7 +13,7 @@ Scrolls.Views.DeckScrolls = Backbone.View.extend({
 
     this.deck.get('scrolls').each(function(scroll_id) {
       var scroll = this.scrolls.findWhere({id: scroll_id})
-      var scrollListItem = new Scrolls.Views.ScrollListItem({model: scroll});
+      var scrollListItem = new Scrolls.Views.ScrollListItem({scroll: scroll});
       scrolls.push(scrollListItem.render().el);
     });
 
