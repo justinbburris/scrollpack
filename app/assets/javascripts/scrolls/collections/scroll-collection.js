@@ -10,9 +10,15 @@ Scrolls.Collections.ScrollCollection = Backbone.Collection.extend ({
     resource_type: []
   },
 
+  comparator: function( collection ) {
+    var that = this;
+    return( collection.get( that.sorter ) );
+  },
+
   initialize: function() {
     this.scrollFilter = JSON.parse(JSON.stringify(this.baseFilter));
     this.noFilter     = true;
+    this.sorter       = 'name';
 
     this.on('change:scrollFilter', this.checkFilter);
   },

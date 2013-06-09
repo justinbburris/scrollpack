@@ -7,6 +7,7 @@ Scrolls.Views.GameScrollsView = Backbone.View.extend({
 
     this.listenTo(this.gameScrolls, 'reset', this.setScrolls);
     this.listenTo(this.gameScrolls, 'change:scrollFilter', this.setScrolls);
+    this.listenTo(this.gameScrolls, 'sort', this.setScrolls);
   },
 
   setScrolls: function() {
