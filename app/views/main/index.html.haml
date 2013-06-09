@@ -9,19 +9,25 @@
   .row
     .span12
       %h4 Filter
-      .btn-group{data: {toggle:"buttons-checkbox"}}
-        %button.btn.btn-primary{type: "button"} Creature
-        %button.btn.btn-primary{type: "button"} Spell
-        %button.btn.btn-primary{type: "button"} Enchantment
-        %button.btn.btn-primary{type: "button"} Structure
-      .btn-group{data: {toggle: "buttons-checkbox"}}
-        %button.btn.btn-primary{type: "button"} Energy
-        %button.btn.btn-primary{type: "button"} Order
-        %button.btn.btn-primary{type: "button"} Growth
-      .btn-group{data: {toggle: "buttons-checkbox"}}
-        %button.btn.btn-primary{type: "button"} Common
-        %button.btn.btn-primary{type: "button"} Uncommon
-        %button.btn.btn-primary{type: "button"} Rare
+      .btn-group.scroll-filter{data: {toggle:"buttons-checkbox"}}
+        %button.btn.btn-primary{type: "button",
+                                data: {type: 'scroll_type', filter: 'Creature'}} Creature
+        %button.btn.btn-primary{type: "button",
+                                data: {type: 'scroll_type', filter: 'Spell'}} Spell
+        %button.btn.btn-primary{type: "button",
+                                data: {type: 'scroll_type', filter: 'Enchantment'}} Enchantment
+        %button.btn.btn-primary{type: "button",
+                                data: {type: 'scroll_type', filter: 'Structure'}} Structure
+
+      .btn-group.scroll-filter{data: {toggle: "buttons-checkbox"}}
+        %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Energy'}} Energy
+        %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Order'}} Order
+        %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Growth'}} Growth
+
+      .btn-group.scroll-filter{data: {toggle: "buttons-checkbox"}}
+        %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Common'}} Common
+        %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Uncommon'}} Uncommon
+        %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Rare'}} Rare
   .row
     .span12
       %h4 Sort

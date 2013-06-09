@@ -5,14 +5,15 @@ Scrolls.Views.GameScrollsView = Backbone.View.extend({
     this.deck        = opts.deck;
     this.template    = ich.game_scrolls;
 
-    this.listenTo(this.gameScrolls, 'reset', this.addScrolls);
+    this.listenTo(this.gameScrolls, 'reset', this.setScrolls);
+    this.listenTo(this.gameScrolls, 'change:scrollFilter', this.setScrolls);
   },
 
-  addScrolls: function() {
+  setScrolls: function() {
     var scrollsToRender = [];
     var deck           = this.deck;
 
-    this.gameScrolls.each(function(scroll) {
+    _.each(this.gameScrolls.filteredScrolls(), function(scroll) {
       var gameScrollView = new Scrolls.Views.GameScrollView({
         scroll: scroll,
         deck:   deck
