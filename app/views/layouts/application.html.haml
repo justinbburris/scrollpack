@@ -18,9 +18,13 @@
 
 
   %body
+    .navbar.navbar-inverse
+      .navbar-inner
+        %a.brand{:href => "#"} Scrolls Builder
+
     .container
       .row
-        .span9
+        .span10
           = bootstrap_flash
           = yield
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  scroll_id: 1
+  deck_id: 1
+  count: 1
+
+two:
+  scroll_id: 1
+  deck_id: 1
+  count: 1

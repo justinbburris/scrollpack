@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608062004) do
+ActiveRecord::Schema.define(:version => 20130608150958) do
+
+  create_table "deck_scrolls", :force => true do |t|
+    t.integer  "scroll_id"
+    t.integer  "deck_id"
+    t.integer  "count"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "decks", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "parser_checksums", :force => true do |t|
     t.string   "checksum"

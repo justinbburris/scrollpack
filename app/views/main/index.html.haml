@@ -1,0 +1,39 @@
+#app
+
+%script{type: "text/html", id: "main_view"}
+  %h1 Scrolls Builder Homepage
+
+  %a#new-deck{href: '#decks/new'} New Deck
+
+%script{type: "text/html", id: "deck_builder"}
+  .row
+    #scrolls-filter.span2
+      %h4 Filter
+      %ul.scroll-picker
+        %li
+          one
+        %li
+          two
+        %li
+          three
+    #scrolls-list.span8
+  .row
+    #deck-scrolls.span10
+  .row
+    #deck-options.span10
+      %h4 Deck Options
+      %ul.deck-options
+
+%script{type: "text/html", id: "scroll_list"}
+  %h4 Scrolls
+  %ul.scroll-picker
+
+%script{type: "text/html", id: "deck_scrolls"}
+  %h4 The deck itself
+  %ul.scroll-picker
+
+
+
+%script{type: "text/html", id: "scroll_list_item"}
+  %div
+    {{name}}
