@@ -33,11 +33,11 @@
   .row
     .span12
       %h4 Sort
-      .btn-group{data: {toggle: "buttons-radio"}}
-        %button.btn.btn-primary{type: "button"} Rarity
-        %button.btn.btn-primary{type: "button"} Cost
-        %button.btn.btn-primary{type: "button"} Name
-        %button.btn.btn-primary{type: "button"} Resource Type
+      .btn-group.scroll-sort{data: {toggle: "buttons-radio"}}
+        %button.btn.btn-primary.active{type: "button", data: {sorter: 'name'}} Name
+        %button.btn.btn-primary{type: "button", data: {sorter: 'rarity'}} Rarity
+        %button.btn.btn-primary{type: "button", data: {sorter: 'cost'}} Cost
+        %button.btn.btn-primary{type: "button", data: {sorter: 'resource_type'}} Resource Type
 
 
   .row
@@ -70,6 +70,7 @@
 %script{type: "text/html", id: "game_scroll"}
   %div
     {{name}}
+    {{cost}}
 
 %script{type: "text/html", id: "deck_scroll"}
   %div

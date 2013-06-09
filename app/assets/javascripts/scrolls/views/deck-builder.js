@@ -2,7 +2,9 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   events: {
     'click .scroll-filter button': 'filterScrolls',
-    'click button.clear-filter': 'removeScrollFilter'
+    'click button.clear-filter': 'removeScrollFilter',
+
+    'click .scroll-sort button': 'sortScrolls'
   },
 
   initialize: function(opts) {
@@ -19,19 +21,27 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   },
 
   filterScrolls: function(evt) {
-    var button     = $(evt.target)
-    var data = button.data();
+    var button  = $(evt.target)
+    var data    = button.data();
 
     if(button.hasClass('active')) { //remove creature filter
-      this.gameScrolls.removeFilter(data['type'], data['filter']);
+      this.gameScrolls.removeFilter(data.type, data.filter);
     } else { //add creature filter
-      this.gameScrolls.addFilter(data['type'], data['filter']);
+      this.gameScrolls.addFilter(data['type'], data.filter);
     }
   },
 
   removeScrollFilter: function() {
     this.gameScrolls.clearFilter();
     this.$('.scroll-filter').children().removeClass('active');
+  },
+
+  sortScrolls: function(evt) {
+    var button = $(evt.target);
+    var data   = button.data();
+
+    this.gameScrolls.sorter = data.sorter;
+    this.gameScrolls.sort(this.comparator);
   },
 
   render: function() {
