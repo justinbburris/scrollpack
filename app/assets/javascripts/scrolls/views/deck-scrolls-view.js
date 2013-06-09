@@ -1,7 +1,8 @@
 Scrolls.Views.DeckScrollsView = Backbone.View.extend({
 
   initialize: function(opts) {
-    this.deckScrolls = opts.deckScrolls;
+    this.deck        = opts.deck;
+    this.deckScrolls = this.deck.get('deckScrolls');
     this.template    = ich.deck_scrolls;
 
     this.listenTo(this.deckScrolls, 'add', this.addedScroll);

@@ -2,7 +2,7 @@ Scrolls.Views.GameScrollsView = Backbone.View.extend({
 
   initialize: function(opts) {
     this.gameScrolls = opts.gameScrolls;
-    this.deckScrolls = opts.deckScrolls;
+    this.deck        = opts.deck;
     this.template    = ich.game_scrolls;
 
     this.listenTo(this.gameScrolls, 'reset', this.addScrolls);
@@ -10,12 +10,12 @@ Scrolls.Views.GameScrollsView = Backbone.View.extend({
 
   addScrolls: function() {
     var scrollsToRender = [];
-    var deckScrolls     = this.deckScrolls;
+    var deck           = this.deck;
 
     this.gameScrolls.each(function(scroll) {
       var gameScrollView = new Scrolls.Views.GameScrollView({
-        scroll:      scroll,
-        deckScrolls: deckScrolls
+        scroll: scroll,
+        deck:   deck
       });
       scrollsToRender.push(gameScrollView.render().el);
     });

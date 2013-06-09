@@ -6,17 +6,15 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   initialize: function(opts) {
     this.gameScrolls = opts.gameScrolls;
-    this.deckScrolls = opts.deckScrolls;
+    this.deck        = opts.deck;
     this.template    = ich.deck_builder;
 
     this.gameScrollsView = new Scrolls.Views.GameScrollsView({
       gameScrolls: this.gameScrolls,
-      deckScrolls: this.deckScrolls
+      deck:        this.deck
     });
 
-    this.deckScrollsView = new Scrolls.Views.DeckScrollsView({
-      deckScrolls: this.deckScrolls
-    });
+    this.deckScrollsView = new Scrolls.Views.DeckScrollsView({deck: this.deck});
   },
 
   render: function() {
