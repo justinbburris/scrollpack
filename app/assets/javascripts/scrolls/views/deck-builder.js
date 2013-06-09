@@ -1,7 +1,8 @@
 Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   events: {
-    'click .scroll-filter button': 'filterScrolls'
+    'click .scroll-filter button': 'filterScrolls',
+    'click button.clear-filter': 'removeScrollFilter'
   },
 
   initialize: function(opts) {
@@ -26,8 +27,11 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     } else { //add creature filter
       this.gameScrolls.addFilter(data['type'], data['filter']);
     }
+  },
 
-    this.gameScrolls.trigger('change:scrollFilter');
+  removeScrollFilter: function() {
+    this.gameScrolls.clearFilter();
+    this.$('.scroll-filter').children().removeClass('active');
   },
 
   render: function() {

@@ -4,22 +4,31 @@ Scrolls.Collections.ScrollCollection = Backbone.Collection.extend ({
 
   url: '/scrolls',
 
+  baseFilter: {
+    scroll_type: [],
+    rarity: [],
+    resource_type: []
+  },
+
   initialize: function() {
-    this.scrollFilter = {
-      scroll_type: [],
-      rarity: [],
-      resource_type: []
-    }
+    this.scrollFilter = JSON.parse(JSON.stringify(this.baseFilter));
   },
 
   removeFilter: function(filter_type, filter_name) {
     this.scrollFilter[filter_type] = _.reject(this.scrollFilter[filter_type], function(name) {
       return name === filter_name
     });
+    this.trigger('change:scrollFilter');
   },
 
   addFilter: function(filter_type, filter_name) {
     this.scrollFilter[filter_type].push(filter_name);
+    this.trigger('change:scrollFilter');
+  },
+
+  clearFilter: function() {
+    this.scrollFilter = JSON.parse(JSON.stringify(this.baseFilter));
+    this.trigger('change:scrollFilter');
   },
 
   // Max complexity == n * 10
