@@ -3,7 +3,9 @@ Scrolls.Models.Deck = Backbone.Model.extend({
   defaults: function() {
     return {
       name: 'New Deck',
-      scrollList: new Scrolls.Collections.ScrollCollection()
+      maxDeckSize: 50,
+      maxScrolls: 3,
+      deckScrolls: new Scrolls.Collections.ScrollCollection()
     }
   },
 

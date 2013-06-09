@@ -1,30 +1,29 @@
-Scrolls.Views.DeckBuilder = Backbone.View.extend({
+Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   events: {
     'click #scrolls-list li.scroll': 'addScrollToDeck'
   },
 
   initialize: function(opts) {
-    this.scrolls     = opts.scrolls;
+    this.gameScrolls = opts.gameScrolls;
     this.deck        = opts.deck;
     this.template    = ich.deck_builder;
 
-    this.scrollList  = new Scrolls.Views.ScrollList({scrolls: this.scrolls});
-    this.deckScrolls = new Scrolls.Views.DeckScrolls({deck: this.deck, scrolls: this.scrolls});    
-  },
+    this.gameScrollsView = new Scrolls.Views.GameScrollsView({
+      gameScrolls: this.gameScrolls,
+      deck:        this.deck
+    });
 
-  addScrollToDeck: function(evt) {
-    var scroll = this.scrolls.findWhere({id: $(evt.target).data('id')});
-    this.deck.get('scrollList').add(scroll)
+    this.deckScrollsView = new Scrolls.Views.DeckScrollsView({deck: this.deck});
   },
 
   render: function() {
     this.$el.html(this.template());
 
-    this.$('#scrolls-list').html(this.scrollList.render().el);
-    this.$('#deck-scrolls').html(this.deckScrolls.render().el);
+    this.$('#scrolls-list').html(this.gameScrollsView.render().el);
+    this.$('#deck-scrolls').html(this.deckScrollsView.render().el);
 
-    this.scrolls.fetch({reset: true});
+    this.gameScrolls.fetch({reset: true});
 
     return this;
   }
