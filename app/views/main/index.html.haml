@@ -7,20 +7,38 @@
 
 %script{type: "text/html", id: "deck_builder"}
   .row
-    #scrolls-filter.span2
+    .span12
       %h4 Filter
-      %ul.scroll-picker
-        %li
-          one
-        %li
-          two
-        %li
-          three
+      .btn-group{data: {toggle:"buttons-checkbox"}}
+        %button.btn.btn-primary{:type => "button"} Creature
+        %button.btn.btn-primary{:type => "button"} Spell
+        %button.btn.btn-primary{:type => "button"} Enchantment
+        %button.btn.btn-primary{:type => "button"} Structure
+      .btn-group{data: {toggle: "buttons-checkbox"}}
+        %button.btn.btn-primary{:type => "button"} Energy
+        %button.btn.btn-primary{:type => "button"} Order
+        %button.btn.btn-primary{:type => "button"} Growth
+      .btn-group{data: {toggle: "buttons-checkbox"}}
+        %button.btn.btn-primary{:type => "button"} Common
+        %button.btn.btn-primary{:type => "button"} Uncommon
+        %button.btn.btn-primary{:type => "button"} Rare
+  .row
+    .span12
+      %h4 Sort
+      .btn-group{"data-toggle" => "buttons-radio"}
+        %button.btn.btn-primary{:type => "button"} Rarity
+        %button.btn.btn-primary{:type => "button"} Cost
+        %button.btn.btn-primary{:type => "button"} Name
+        %button.btn.btn-primary{:type => "button"} Resource Type
+
+  .row
     #scrolls-list.span8
+    #scrolls-preview.span4
+      %h4 Scroll Preview
   .row
-    #deck-scrolls.span10
+    #deck-scrolls.span12
   .row
-    #deck-options.span10
+    #deck-options.span12
       %h4 Deck Options
       %ul.deck-options
 
