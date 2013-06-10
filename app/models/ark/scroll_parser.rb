@@ -31,9 +31,18 @@ class Ark::ScrollParser
 
   def parse
     scrolls = []
+
     @table.css('tr').drop(1).each do |tr|
+
+      # The only way we can know these scrolls aren't in the game anymore is by the style
+      # attribute on the table row :[
+      style = tr.css('td').first.attributes['style']
+      next if style != nil && style.value == 'background: red; color: white;'
+
       scrolls << massage_values(tr)
+
     end
+
     scrolls
   end
 
@@ -42,6 +51,7 @@ class Ark::ScrollParser
     element.css('td').each_with_index do |cell, index|
       cell = cell.text.strip
       attr_name = @@POSITION_ATTR_MAP[index]
+
       if attr_name == :cost
         type, cell = cell[0].upcase, cell[1..cell.length]
         attrs[:resource_type] = @@COST_TYPE[type]

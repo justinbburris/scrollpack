@@ -32,4 +32,16 @@ class Scroll < ActiveRecord::Base
   RESOURCE_GROWTH   = 'Growth'
   RESOURCE_ORDER    = 'Order'
 
+  def as_json(options={})
+    self.attributes.merge(scrollImage: self.scrollImage)
+  end
+
+  def url_name
+    self.name.gsub(' ', '_')
+  end
+
+  def scrollImage
+    ActionController::Base.helpers.asset_path("scrolls/#{scroll_id}_#{url_name}.png")
+  end
+
 end

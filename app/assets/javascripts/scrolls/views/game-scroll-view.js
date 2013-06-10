@@ -5,7 +5,8 @@ Scrolls.Views.GameScrollView = Backbone.View.extend({
   className: 'scroll',
 
   events: {
-    'click': 'addScrollToDeck'
+    'click': 'addScrollToDeck',
+    'mouseover': function() { this.scroll.trigger('hoverOverScroll', this.scroll); }
   },
 
   initialize: function(opts) {

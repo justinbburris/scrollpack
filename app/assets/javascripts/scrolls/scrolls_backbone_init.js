@@ -2,5 +2,6 @@ window.Scrolls = window.Scrolls || {
   Collections: {},
   Models: {},
   Router: {},
-  Views: {}
+  Views: {},
+  Rails: {} // For rails asset pipeline shit
 };
