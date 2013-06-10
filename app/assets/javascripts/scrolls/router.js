@@ -6,13 +6,17 @@ Scrolls.Router = Backbone.Router.extend({
   },
 
   initialize: function() {
-    return this.bind('all', this._trackPageview);
+    this.bind('route', this._trackPageview);
   },
 
   _trackPageview: function() {
-    var url;
-    url = Backbone.history.getFragment();
-    return ga('send', 'pageview');
+    var url = Backbone.history.getFragment();
+
+    if (!/^\//.test(url) && url != "") {
+      url = "/" + url;
+    }
+
+    ga('send', 'pageview', url);
   },
 
   newDeck: function() {
