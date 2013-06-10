@@ -5,6 +5,16 @@ Scrolls.Router = Backbone.Router.extend({
     '': 'index'
   },
 
+  initialize: function() {
+    return this.bind('all', this._trackPageview);
+  },
+
+  _trackPageview: function() {
+    var url;
+    url = Backbone.history.getFragment();
+    return ga('send', 'pageview');
+  },
+
   newDeck: function() {
     var deck            = new Scrolls.Models.Deck();
     var gameScrolls     = new Scrolls.Collections.ScrollCollection();
