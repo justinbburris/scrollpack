@@ -18,6 +18,8 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     });
 
     this.deckScrollsView = new Scrolls.Views.DeckScrollsView({deck: this.deck});
+
+    this.listenTo(this.gameScrolls, 'hoverOverScroll', this.showPreviewScroll);
   },
 
   filterScrolls: function(evt) {
@@ -42,6 +44,10 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
     this.gameScrolls.sorter = data.sorter;
     this.gameScrolls.sort(this.comparator);
+  },
+
+  showPreviewScroll: function(scroll) {
+    this.$('#scroll-preview').html(ich.preview_scroll(scroll.toJSON()));
   },
 
   render: function() {

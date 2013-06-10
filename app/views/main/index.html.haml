@@ -42,8 +42,7 @@
 
   .row
     #scrolls-list.span8
-    #scrolls-preview.span4
-      %h4 Scroll Preview
+    #scroll-preview.span4
   .row
     #deck-scrolls.span12
   .row
@@ -67,13 +66,16 @@
   %h4 The deck itself
   %ul.scroll-picker
 
+%script{type: "text/html", id: "preview_scroll"}
+  %h4 Scroll Preview
+  %img{src: "{{scrollImage}}"}
+
 %script{type: "text/html", id: "game_scroll"}
   %div
-    {{name}}
-    {{cost}}
+    %img{src: '{{scrollImage}}'}
 
 %script{type: "text/html", id: "deck_scroll"}
   %div
-    {{name}}
-    %i.icon-remove-sign
+    %img{src: '{{scrollImage}}'}
     {{count}}
+    %i.icon-remove-sign  
