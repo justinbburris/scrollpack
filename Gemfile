@@ -14,6 +14,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :development do
+  gem 'pry-rails'
+end
+
 # Currently used for downloading/parsing
 gem 'httparty', '~> 0.11.0'
 gem "nokogiri", "~> 1.5.10"
