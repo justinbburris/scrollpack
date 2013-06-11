@@ -1,62 +1,16 @@
 #app
 
 %script{type: "text/html", id: "main_view"}
-  %h1 Scrolls Builder Homepage
-
-  %a#new-deck{href: '#decks/new'} New Deck
+  .row
+    .hero-unit.clearfix.span7.offset3
+      .span3
+        %p Scroll Packs are your own deck ideas, online.
+        %p Share your scroll packs with friends and the enture Scroll community!
+        %a#new-deck.btn.btn-success.btn-large{href: '#decks/new'} Build Your Pack
+      = image_tag 'scrolls/15_Crown_of_Strength.png', class: 'hero-scroll pull-right'
 
 %script{type: "text/html", id: "deck_builder"}
-  .row
-    .span12
-      %h4 Filter
-      .btn-group.scroll-filter{data: {toggle:"buttons-checkbox"}}
-        %button.btn.btn-primary{type: "button",
-                                data: {type: 'scroll_type', filter: 'Creature'}} Creature
-        %button.btn.btn-primary{type: "button",
-                                data: {type: 'scroll_type', filter: 'Spell'}} Spell
-        %button.btn.btn-primary{type: "button",
-                                data: {type: 'scroll_type', filter: 'Enchantment'}} Enchantment
-        %button.btn.btn-primary{type: "button",
-                                data: {type: 'scroll_type', filter: 'Structure'}} Structure
-
-      .btn-group.scroll-filter{data: {toggle: "buttons-checkbox"}}
-        %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Energy'}} Energy
-        %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Order'}} Order
-        %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Growth'}} Growth
-
-      .btn-group.scroll-filter{data: {toggle: "buttons-checkbox"}}
-        %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Common'}} Common
-        %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Uncommon'}} Uncommon
-        %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Rare'}} Rare
-      %button.btn.btn-warning.clear-filter Clear Filter
-
-  .row
-    .span12
-      %h4 Sort
-      .btn-group.scroll-sort{data: {toggle: "buttons-radio"}}
-        %button.btn.btn-primary.active{type: "button", data: {sorter: 'name'}} Name
-        %button.btn.btn-primary{type: "button", data: {sorter: 'rarity'}} Rarity
-        %button.btn.btn-primary{type: "button", data: {sorter: 'cost'}} Cost
-        %button.btn.btn-primary{type: "button", data: {sorter: 'resource_type'}} Resource Type
-
-
-  .row
-    #scrolls-list.span8
-    #scroll-preview.span4
-  .row
-    #deck-scrolls.span12
-  .row
-    #deck-options.span12
-      %h4 Deck Options
-      %button.btn.btn-primary.btn-success{data: {loading_text: "Saving..."}, type: "button"} Save
-      %button.btn.btn-primary{type: "button"} Load
-      %button.btn.btn-primary{data: {loading_text: "Exporting..."}, type: "button"} Export
-
-      .btn-group{data: {toggle: "buttons-radio"}}
-        %button.btn.btn-primary{type: "button"} Public
-        %button.btn.btn-primary{type: "button"} Private
-
-      %button.btn.btn-primary.btn-danger{data: {loading_text: "Deleting..."}, type: "button"} Delete
+  = render "scrolls/templates/deck_builder"
 
 %script{type: "text/html", id: "game_scrolls"}
   %h4 Scrolls
