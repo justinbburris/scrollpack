@@ -7,6 +7,9 @@ Scrolls.Router = Backbone.Router.extend({
 
   initialize: function() {
     this.bind('route', this._trackPageview);
+
+    this.applicationLayout = ich.application_layout;
+    this.deckLayout        = ich.deck_layout;
   },
 
   _trackPageview: function() {
@@ -27,7 +30,7 @@ Scrolls.Router = Backbone.Router.extend({
       gameScrolls: gameScrolls,
     });
 
-    $('#app').html(deckBuilderView.render().el);
+    this.deckBuild(deckBuilderView.render().el);
 
     gameScrolls.fetch({reset: true});
   },
@@ -35,7 +38,18 @@ Scrolls.Router = Backbone.Router.extend({
   index: function() {
     var mainView = new Scrolls.Views.MainView();
 
-    $('#app').html(mainView.render().el);
+    this.applicationBuild(mainView.render().el);
+  },
+
+  applicationBuild: function(view) {
+    $('#main-view').html(this.applicationLayout());
+    $('#app').html(view);
+  },
+
+  deckBuild: function(view) {
+    $('#main-view').html(this.deckLayout());
+    $('#app').html(view);
   }
+
 
 });
