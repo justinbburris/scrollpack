@@ -48,7 +48,7 @@ Scrolls.Router = Backbone.Router.extend({
 
   deckBuild: function(view) {
     $('#main-view').html(this.deckLayout());
-    $('#app').html(view);
+    $('#deck').html(view);
   }
 
 

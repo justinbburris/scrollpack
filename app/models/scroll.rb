@@ -5,6 +5,17 @@ class Scroll < ActiveRecord::Base
   TYPE_ENCHANTMENT  = 'Enchantment'
   TYPE_SPELL        = 'Spell'
   TYPE_STRUCTURE    = 'Structure'
+  SCROLL_TYPES      = [TYPE_CREATURE, TYPE_ENCHANTMENT, TYPE_SPELL, TYPE_STRUCTURE]
+
+  RESOURCE_ENERGY   = 'Energy'
+  RESOURCE_GROWTH   = 'Growth'
+  RESOURCE_ORDER    = 'Order'
+  SCROLL_RESOURCES  = [RESOURCE_ENERGY, RESOURCE_GROWTH, RESOURCE_ORDER]
+
+  RARITY_COMMON     = 'Common'
+  RARITY_UNCOMMON   = 'Uncommon'
+  RARITY_RARE       = 'Rare'
+  SCROLL_RARITIES   = [RARITY_COMMON, RARITY_UNCOMMON, RARITY_RARE]
 
   SUBTYPE_ARTILLERY = 'Artillery'
   SUBTYPE_AUTOMATON = 'Automaton'
@@ -23,14 +34,6 @@ class Scroll < ActiveRecord::Base
   SUBTYPE_VATTR     = 'Vattr'
   SUBTYPE_WALL      = 'Wall'
   SUBTYPE_WOLF      = 'Wolf'
-
-  RARITY_COMMON     = 'Common'
-  RARITY_UNCOMMON   = 'Uncommon'
-  RARITY_RARE       = 'Rare'
-
-  RESOURCE_ENERGY   = 'Energy'
-  RESOURCE_GROWTH   = 'Growth'
-  RESOURCE_ORDER    = 'Order'
 
   def as_json(options={})
     self.attributes.merge(scrollImage: self.scrollImage)

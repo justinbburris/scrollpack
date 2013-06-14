@@ -2,42 +2,37 @@
   .span12
     %h4 Filter
     .btn-group.scroll-filter{data: {toggle:"buttons-checkbox"}}
-      %button.btn.btn-primary{type: "button",
-                              data: {type: 'scroll_type', filter: 'Creature'}} Creature
-      %button.btn.btn-primary{type: "button",
-                              data: {type: 'scroll_type', filter: 'Spell'}} Spell
-      %button.btn.btn-primary{type: "button",
-                              data: {type: 'scroll_type', filter: 'Enchantment'}} Enchantment
-      %button.btn.btn-primary{type: "button",
-                              data: {type: 'scroll_type', filter: 'Structure'}} Structure
+      - Scroll::SCROLL_TYPES.each do |type|
+        %button.btn.btn-mini.btn-primary{type: "button",
+                                         data: {type: 'scroll_type', filter: type}} #{type}
 
     .btn-group.scroll-filter{data: {toggle: "buttons-checkbox"}}
-      %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Energy'}} Energy
-      %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Order'}} Order
-      %button.btn.btn-primary{type: "button", data: {type: 'resource_type', filter: 'Growth'}} Growth
+      - Scroll::SCROLL_RESOURCES.each do |resource|
+        %button.btn.btn-mini.btn-primary{type: "button",
+                                         data: {type: 'resource_type',
+                                               filter: resource}} #{resource}
 
     .btn-group.scroll-filter{data: {toggle: "buttons-checkbox"}}
-      %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Common'}} Common
-      %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Uncommon'}} Uncommon
-      %button.btn.btn-primary{type: "button", data: {type: 'rarity', filter: 'Rare'}} Rare
-    %button.btn.btn-warning.clear-filter Clear Filter
+      - Scroll::SCROLL_RARITIES.each do |rarity|
+        %button.btn.btn-mini.btn-primary{type: "button",
+                                         data: {type: 'rarity', filter: rarity}} #{rarity}
 
-.row
-  .span12
+    %button.btn.btn-mini.btn-warning.clear-filter Clear Filter
+
     %h4 Sort
     .btn-group.scroll-sort{data: {toggle: "buttons-radio"}}
-      %button.btn.btn-primary.active{type: "button", data: {sorter: 'name'}} Name
-      %button.btn.btn-primary{type: "button", data: {sorter: 'rarity'}} Rarity
-      %button.btn.btn-primary{type: "button", data: {sorter: 'cost'}} Cost
-      %button.btn.btn-primary{type: "button", data: {sorter: 'resource_type'}} Resource Type
+      %button.btn.btn-mini.btn-primary.active{type: "button", data: {sorter: 'name'}} Name
+      %button.btn.btn-mini.btn-primary{type: "button", data: {sorter: 'rarity'}} Rarity
+      %button.btn.btn-mini.btn-primary{type: "button", data: {sorter: 'cost'}} Cost
+      %button.btn.btn-mini.btn-primary{type: "button",
+                                       data: {sorter: 'resource_type'}} Resource Type
 
-#scrolls-list.span1
-.row
-  #deck-scrolls.span11
+.span2
+  #scrolls-list
 
-#scroll-preview.span4
-.row
-  #deck-options.span12
+.span8
+  #deck-scrolls
+  #deck-options
     %h4 Deck Options
     %button.btn.btn-primary.btn-success{data: {loading_text: "Saving..."}, type: "button"} Save
     %button.btn.btn-primary{type: "button"} Load
@@ -49,3 +44,5 @@
 
     %button.btn.btn-primary.btn-danger{data: {loading_text: "Deleting..."}, type: "button"}
       Delete
+.span3
+  #scroll-preview
