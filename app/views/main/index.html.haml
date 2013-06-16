@@ -45,3 +45,19 @@
     %p.count-mutator.text-error.decrease-scrolls.danger.pull-right -
     %p.count-mutator.text-success.increase-scrolls.success.pull-right +
     %img{src: '{{scrollImage}}'}
+
+%script{type: "text/html", id: "deck_stats"}
+  %table.table.table-condensed
+    {{#resources}}
+    %tr
+      %td {{0}}
+      %td {{1}}
+    {{/resources}}
+    {{#types}}
+    %tr
+      %td {{0}}
+      %td {{1}}
+    {{/types}}
+    %tr
+      %td Scroll Count
+      %td {{scrollCount}}

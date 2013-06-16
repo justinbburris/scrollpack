@@ -101,6 +101,31 @@ Scrolls.Collections.ScrollCollection = Backbone.Collection.extend ({
     }
 
     return filteredScrolls;
-  }
+  },
+
+  scrollStats: function() {
+    var stats = {
+      resources: {
+        Order: 0,
+        Energy: 0,
+        Growth: 0
+      },
+      types: {
+        Creature: 0,
+        Enchantment: 0,
+        Spell: 0,
+        Structure: 0
+      },
+      scrollCount: 0
+    }
+
+    _.each(this.models, function(scroll) {
+      stats.scrollCount += scroll.get('count');
+      stats.resources[scroll.get('resource_type')] += scroll.get('count');
+      stats.types[scroll.get('scroll_type')] += scroll.get('count');
+    });
+
+    return stats;
+  },
 
 });

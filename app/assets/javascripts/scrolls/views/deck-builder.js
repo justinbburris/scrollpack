@@ -19,8 +19,16 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     });
 
     this.deckScrollsView = new Scrolls.Views.DeckScrollsView({deck: this.deck});
+    this.deckStatsView   = new Scrolls.Views.DeckStatsView({deck: this.deck});
+
     this.listenTo(this.gameScrolls, 'hoverOverScroll', this.showPreviewScroll);
+
     this.listenTo(this.deckScrolls, 'hoverOverScroll', this.showPreviewScroll);
+    this.listenTo(this.deckScrolls, 'add', this.renderStats);
+    this.listenTo(this.deckScrolls, 'remove', this.renderStats);
+    this.listenTo(this.deckScrolls, 'change', this.renderStats);
+    this.listenTo(this.deckScrolls, 'reset', this.renderStats);
+
   },
 
   filterScrolls: function(evt) {
@@ -51,11 +59,16 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     this.$('#scroll-preview').html(ich.preview_scroll(scroll.toJSON()));
   },
 
+  renderStats: function() {
+    this.$('#deck-stats').html(this.deckStatsView.render().el);
+  },
+
   render: function() {
     this.$el.html(this.template());
 
     this.$('#scrolls-list').html(this.gameScrollsView.render().el);
     this.$('#deck-scrolls').html(this.deckScrollsView.render().el);
+    this.renderStats();
 
     this.gameScrolls.fetch({reset: true});
 
