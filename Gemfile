@@ -18,6 +18,10 @@ group :development do
   gem 'pry-rails'
 end
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 # Currently used for downloading/parsing
 gem 'httparty', '~> 0.11.0'
 gem "nokogiri", "~> 1.5.10"
