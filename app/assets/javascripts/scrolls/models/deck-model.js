@@ -15,7 +15,6 @@ Scrolls.Models.Deck = Backbone.Model.extend({
     var scrollStats = this.get('deckScrolls').scrollStats();
 
     _.each(_.keys(scrollStats), function(statType) {
-      debugger;
       if(! _.isObject(scrollStats[statType])) {
         return;
       }
