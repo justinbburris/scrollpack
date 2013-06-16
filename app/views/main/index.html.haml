@@ -40,6 +40,8 @@
 
 %script{type: "text/html", id: "deck_scroll"}
   %div
-    %img{src: '{{scrollImage}}'}
     {{count}}
-    %i.icon-remove-sign  
+    %i.count-mutator.icon-remove-sign.pull-right
+    %p.count-mutator.decrease-scrolls.danger.pull-right -
+    %p.count-mutator.increase-scrolls.success.pull-right +
+    %img{src: '{{scrollImage}}'}

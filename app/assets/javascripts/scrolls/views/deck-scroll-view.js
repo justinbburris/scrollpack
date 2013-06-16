@@ -5,7 +5,9 @@ Scrolls.Views.DeckScrollView = Backbone.View.extend({
   className: 'scroll',
 
   events: {
-    'click .icon-remove-sign': 'removeScroll'
+    'click .icon-remove-sign': 'removeScroll',
+    'click .decrease-scrolls': 'decreaseScrolls',
+    'click .increase-scrolls': 'increaseScrolls'
   },
 
   initialize: function(opts) {
@@ -20,6 +22,22 @@ Scrolls.Views.DeckScrollView = Backbone.View.extend({
     this.deckScrolls.remove(this.scroll);
 
     this.remove();
+  },
+
+  decreaseScrolls: function() {
+    var count = this.scroll.get('count');
+    if(count > 1) {
+      this.scroll.set('count', count - 1);
+    } else {
+      this.removeScroll();
+    }
+  },
+
+  increaseScrolls: function() {
+    var count = this.scroll.get('count');
+    if(count <= 2) {
+      this.scroll.set('count', count + 1);
+    }
   },
 
   render: function() {
