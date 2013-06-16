@@ -27,24 +27,24 @@
       %button.btn.btn-mini.btn-primary{type: "button",
                                        data: {sorter: 'resource_type'}} Resource Type
 
-.span2
-  #scrolls-list
+.row
+  .span5.offset5
+    #deck-options.pull-right
+      %button.btn.btn-small.btn-success{data: {loading_text: "Saving..."}, type: "button"} Save
+      %button.btn.btn-small.btn-primary{type: "button"} Load
+      -# %button.btn.btn-small.btn-primary{data: {loading_text: "Exporting..."}, type: "button"} Export
 
-.span8
-  #deck-scrolls
-  -# #deck-options
-  -#   %h4 Deck Options
-  -#   %button.btn.btn-primary.btn-success{data: {loading_text: "Saving..."}, type: "button"} Save
-  -#   %button.btn.btn-primary{type: "button"} Load
-  -#   %button.btn.btn-primary{data: {loading_text: "Exporting..."}, type: "button"} Export
+      -# .btn-group{data: {toggle: "buttons-radio"}}
+      -#   %button.btn.btn-small.btn-primary{type: "button"} Public
+      -#   %button.btn.btn-small.btn-primary{type: "button"} Private
 
-  -#   .btn-group{data: {toggle: "buttons-radio"}}
-  -#     %button.btn.btn-primary{type: "button"} Public
-  -#     %button.btn.btn-primary{type: "button"} Private
+      -# %button.btn.btn-small.btn-danger{data: {loading_text: "Deleting..."}, type: "button"} Delete
 
-  -#   %button.btn.btn-primary.btn-danger{data: {loading_text: "Deleting..."}, type: "button"}
-  -#     Delete
-.span3
-  #scroll-preview
-.span3
-  #deck-stats
+.row
+  .span2
+    #scrolls-list
+  .span8
+    #deck-scrolls
+  .span3
+    #scroll-preview
+    #deck-stats
