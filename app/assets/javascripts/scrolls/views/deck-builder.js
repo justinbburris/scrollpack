@@ -8,8 +8,9 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   },
 
   initialize: function(opts) {
-    this.gameScrolls = opts.gameScrolls;
     this.deck        = opts.deck;
+    this.gameScrolls = opts.gameScrolls;
+    this.deckScrolls = this.deck.get('deckScrolls');
     this.template    = ich.deck_builder;
 
     this.gameScrollsView = new Scrolls.Views.GameScrollsView({
@@ -18,8 +19,8 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     });
 
     this.deckScrollsView = new Scrolls.Views.DeckScrollsView({deck: this.deck});
-
     this.listenTo(this.gameScrolls, 'hoverOverScroll', this.showPreviewScroll);
+    this.listenTo(this.deckScrolls, 'hoverOverScroll', this.showPreviewScroll);
   },
 
   filterScrolls: function(evt) {

@@ -7,7 +7,8 @@ Scrolls.Views.DeckScrollView = Backbone.View.extend({
   events: {
     'click .icon-remove-sign': 'removeScroll',
     'click .decrease-scrolls': 'decreaseScrolls',
-    'click .increase-scrolls': 'increaseScrolls'
+    'click .increase-scrolls': 'increaseScrolls',
+    'mouseover': function() { this.scroll.trigger('hoverOverScroll', this.scroll); }
   },
 
   initialize: function(opts) {
