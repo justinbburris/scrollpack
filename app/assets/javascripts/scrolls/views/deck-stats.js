@@ -2,7 +2,7 @@ Scrolls.Views.DeckStatsView = Backbone.View.extend({
 
   initialize: function(opts) {
     this.deck        = opts.deck;
-    this.deckScrolls = this.deck.get('deckScrolls');
+    this.deckScrolls = this.deck.deckScrolls;
     this.template    = ich.deck_stats
   },
 

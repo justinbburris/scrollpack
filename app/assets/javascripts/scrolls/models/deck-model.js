@@ -1,18 +1,19 @@
 Scrolls.Models.Deck = Backbone.Model.extend({
 
-  defaults: function() {
-    return {
-      name: 'New Deck',
-      maxDeckSize: 50,
-      maxScrolls: 3,
-      deckScrolls: new Scrolls.Collections.ScrollCollection()
-    }
+  defaults: {
+    name: 'New Pack',
   },
 
   url: '/decks',
 
+  initialize: function() {
+    this.deckScrolls = new Scrolls.Collections.ScrollCollection();
+    this.maxDeckSize = 50;
+    this.maxScrolls  = 3;
+  },
+
   stats: function() {
-    var scrollStats = this.get('deckScrolls').scrollStats();
+    var scrollStats = this.deckScrolls.scrollStats();
 
     _.each(_.keys(scrollStats), function(statType) {
       if(! _.isObject(scrollStats[statType])) {
