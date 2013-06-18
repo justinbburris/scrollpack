@@ -10,6 +10,8 @@ Scrolls.Models.Deck = Backbone.Model.extend({
     this.deckScrolls = new Scrolls.Collections.ScrollCollection();
     this.maxDeckSize = 50;
     this.maxScrolls  = 3;
+
+    this._sync = Backbone.sync;
   },
 
   stats: function() {
@@ -37,6 +39,16 @@ Scrolls.Models.Deck = Backbone.Model.extend({
     }
 
     return stats;
+  },
+
+  sync: function(method, model, options) {
+    var scrolls = _.map(model.deckScrolls.models, function(scroll) {
+      return { id: scroll.get('id'), count: scroll.get('count') }
+    });
+
+    model.set('scrolls', scrolls);
+
+    this._sync(method, model, options);
   }
 
 });
