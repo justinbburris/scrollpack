@@ -15,7 +15,9 @@ group :assets do
 end
 
 group :development do
+  gem 'awesome_print'
   gem 'pry-rails'
+  gem 'pry-remote'
 end
 
 group :production do
