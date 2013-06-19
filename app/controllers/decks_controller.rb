@@ -11,13 +11,34 @@ class DecksController < ApplicationController
     end
   end
 
+  def update
+    deck = Deck.find(params[:id])
+    deck_scrolls = params[:scrolls].map do |scroll|
+      deck_scroll = DeckScroll.find_or_initialize_by_scroll_id_and_deck_id(scroll_id: scroll[:id],
+                                                                           deck_id: deck.id)
+      deck_scroll.count = scroll[:count]
+
+      deck_scroll
+    end
+
+    deck.deck_scrolls = deck_scrolls
+
+    if deck.save
+      respond_to do |format|
+        format.json { render json: :ok }
+      end
+    end
+  end
+
   def create
-    @deck        = Deck.new(params[:deck])
+    deck        = Deck.new(params[:deck])
     deck_scrolls = params[:scrolls].map{ |scroll|
       DeckScroll.new(scroll_id: scroll[:id], count: scroll[:count])
     }
 
-    @deck.deck_scrolls = deck_scrolls
+    deck.deck_scrolls = deck_scrolls
+
+    deck.save
 
     respond_to do |format|
       format.json { render json: :ok }

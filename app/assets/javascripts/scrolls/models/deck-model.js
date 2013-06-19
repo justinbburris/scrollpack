@@ -4,7 +4,7 @@ Scrolls.Models.Deck = Backbone.Model.extend({
     name: 'New Pack',
   },
 
-  url: '/decks',
+  urlRoot: '/decks',
 
   initialize: function() {
     this.deckScrolls = new Scrolls.Collections.ScrollCollection();
@@ -41,12 +41,24 @@ Scrolls.Models.Deck = Backbone.Model.extend({
     return stats;
   },
 
-  sync: function(method, model, options) {
-    var scrolls = _.map(model.deckScrolls.models, function(scroll) {
-      return { id: scroll.get('id'), count: scroll.get('count') }
-    });
+  populateScrolls: function(gameScrolls) {
+    var deckScrolls = _.map(this.get('scrolls'), function(scroll) {
+      var deckScroll = gameScrolls.get(scroll.id).clone();
+      deckScroll.set('count', scroll.count);
 
-    model.set('scrolls', scrolls);
+      return deckScroll;
+    });
+    this.deckScrolls.set(deckScrolls);
+  },
+
+  sync: function(method, model, options) {
+    if(method == 'update' || method == 'create') {
+      var scrolls = _.map(model.deckScrolls.models, function(scroll) {
+        return { id: scroll.get('id'), count: scroll.get('count') }
+      });
+
+      model.set('scrolls', scrolls);
+    }
 
     this._sync(method, model, options);
   }

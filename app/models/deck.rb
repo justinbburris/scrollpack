@@ -10,8 +10,6 @@ class Deck < ActiveRecord::Base
   def as_json(options={})
     self.attributes
       .slice('id', 'name')
-      .merge(scrolls: self.scrolls.map(&:id),
-             maxScrolls: MAX_SCROLLS,
-             minDeckSize: MIN_DECK_SIZE)
+      .merge(maxScrolls: MAX_SCROLLS, minDeckSize: MIN_DECK_SIZE, scrolls: self.deck_scrolls.as_json)
   end
 end

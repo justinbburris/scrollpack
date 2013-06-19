@@ -12,7 +12,7 @@ Scrolls.Views.DeckScrollsView = Backbone.View.extend({
     this.listenTo(this.deckScrolls, 'add', this.addedScroll);
   },
 
-  emptyPack: function(){
+  emptyPack: function() {
     this.deckScrolls.reset([]);
     this.render();
   },

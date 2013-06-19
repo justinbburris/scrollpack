@@ -2,6 +2,7 @@ Scrolls.Router = Backbone.Router.extend({
 
   routes: {
     'decks/new': 'newDeck',
+    'deck/:id': 'showDeck',
     '': 'index'
   },
 
@@ -33,6 +34,29 @@ Scrolls.Router = Backbone.Router.extend({
     this.deckBuild(deckBuilderView.render().el);
 
     gameScrolls.fetch({reset: true});
+  },
+
+  showDeck: function(id) {
+    var deck            = new Scrolls.Models.Deck({id: id});
+    var gameScrolls     = new Scrolls.Collections.ScrollCollection();
+    var deckBuilderView = new Scrolls.Views.DeckBuilderView({
+      deck: deck,
+      gameScrolls: gameScrolls,
+    });
+
+    this.deckBuild(deckBuilderView.render().el);
+    gameScrolls.fetch({
+      reset: true,
+      success: function() {
+        deck.fetch({
+          reset: true,
+          success: function(model) {
+            model.populateScrolls(gameScrolls);
+          }
+        });
+      }
+    });
+
   },
 
   index: function() {

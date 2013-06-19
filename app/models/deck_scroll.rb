@@ -4,4 +4,10 @@ class DeckScroll < ActiveRecord::Base
   belongs_to :deck
   belongs_to :scroll
 
+  def as_json(options={})
+    {
+      id: self.scroll_id,
+      count: self.count
+    }
+  end
 end

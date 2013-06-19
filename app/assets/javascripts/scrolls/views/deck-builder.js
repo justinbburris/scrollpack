@@ -62,7 +62,6 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     svButton.button('loading');
 
     this.deck.save({}, {
-      patch: true,
       success: function() {
         console.log("Your pack was saved successfully!");
         svButton.button('reset');
