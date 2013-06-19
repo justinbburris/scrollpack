@@ -14,6 +14,7 @@ Scrolls.Views.DeckScrollsView = Backbone.View.extend({
 
   emptyPack: function() {
     this.deckScrolls.reset([]);
+    this.deck.set('scrolls', []);
     this.render();
   },
 
