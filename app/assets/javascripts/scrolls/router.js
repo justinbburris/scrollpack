@@ -24,39 +24,33 @@ Scrolls.Router = Backbone.Router.extend({
   },
 
   newDeck: function() {
-    var deck            = new Scrolls.Models.Deck();
-    var gameScrolls     = new Scrolls.Collections.ScrollCollection();
-    var deckBuilderView = new Scrolls.Views.DeckBuilderView({
-      deck: deck,
-      gameScrolls: gameScrolls,
+    this.initDeckBuilder(function(router) {
+      var deck            = new Scrolls.Models.Deck();
+      var deckBuilderView = new Scrolls.Views.DeckBuilderView({
+        deck: deck,
+        gameScrolls: router.gameScrolls,
+      });
+
+      router.deckBuild(deckBuilderView.render().el);
     });
-
-    this.deckBuild(deckBuilderView.render().el);
-
-    gameScrolls.fetch({reset: true});
   },
 
   showDeck: function(id) {
-    var deck            = new Scrolls.Models.Deck({id: id});
-    var gameScrolls     = new Scrolls.Collections.ScrollCollection();
-    var deckBuilderView = new Scrolls.Views.DeckBuilderView({
-      deck: deck,
-      gameScrolls: gameScrolls,
-    });
+    this.initDeckBuilder(function(router) {
+      var deck            = new Scrolls.Models.Deck({id: id});
+      var deckBuilderView = new Scrolls.Views.DeckBuilderView({
+        deck: deck,
+        gameScrolls: router.gameScrolls,
+      });
 
-    this.deckBuild(deckBuilderView.render().el);
-    gameScrolls.fetch({
-      reset: true,
-      success: function() {
-        deck.fetch({
-          reset: true,
-          success: function(model) {
-            model.populateScrolls(gameScrolls);
-          }
-        });
-      }
+      router.deckBuild(deckBuilderView.render().el);
+      deck.fetch({
+        reset: true,
+        success: function(model) {
+          model.populateScrolls(router.gameScrolls);
+        }
+      });
     });
-
   },
 
   index: function() {
@@ -73,7 +67,24 @@ Scrolls.Router = Backbone.Router.extend({
   deckBuild: function(view) {
     $('#main-view').html(this.deckLayout());
     $('#deck').html(view);
+  },
+
+  initDeckBuilder: function(callback) {
+    if(!this.deckCollection) {
+      this.deckCollection = new Scrolls.Collections.DeckCollection();
+    }
+    this.deckCollection.fetch();
+
+    if(!this.gameScrolls) {
+      var router = this;
+      this.gameScrolls = new Scrolls.Collections.ScrollCollection();
+      this.gameScrolls.fetch({
+        success: function() {
+          callback(router);
+        }
+      });
+    } else {
+      callback(this);
+    }
   }
-
-
 });
