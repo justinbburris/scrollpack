@@ -1,7 +1,7 @@
 class DecksController < ApplicationController
   before_filter :authenticate_user!, only: [:update, :create, :destroy]
   before_filter :load_deck, except: [:index, :create]
-  before_filter :ensure_users_deck, only: [:update, :destroy]
+  before_filter :ensure_ownership, only: [:update, :destroy]
 
   def index
     respond_to do |format|
@@ -21,7 +21,7 @@ class DecksController < ApplicationController
     deck_scrolls = []
     params[:scrolls].each do |scroll|
       deck_scroll = DeckScroll.find_or_initialize_by_scroll_id_and_deck_id(scroll_id: scroll[:id],
-                                                                           deck_id: deck.id)
+                                                                           deck_id: @deck.id)
       deck_scroll.count = scroll[:count]
 
       deck_scrolls << deck_scroll
@@ -65,7 +65,7 @@ class DecksController < ApplicationController
   end
 
   def ensure_ownership
-    if current_user != @deck.user?
+    if current_user != @deck.user
       render status: :unauthorized
     end
   end
