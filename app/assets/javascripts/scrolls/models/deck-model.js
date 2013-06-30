@@ -15,7 +15,7 @@ Scrolls.Models.Deck = Backbone.Model.extend({
   },
 
   validate: function(atts, opts) {
-    if(! atts.scrolls || ! atts.scrolls.length > 0) {
+    if(! this.deckScrolls.length > 0) {
       return "You must have at least one scroll in your pack";
     } else if(atts.name === "New Pack") {
       return "You must name your pack"

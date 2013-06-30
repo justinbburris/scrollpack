@@ -17,4 +17,5 @@
 //= require underscore
 //= require backbone
 //= require icanhaz-no-mustache
+//= require alert
 //= require scrolls/index
