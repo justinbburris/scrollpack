@@ -57,18 +57,13 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     this.gameScrolls.sort(this.comparator);
   },
 
-  savePack: function(evt) {
-    var svButton = $(evt.target);
-    svButton.button('loading');
-
+  savePack: function() {
     this.deck.save({}, {
       success: function() {
         console.log("Your pack was saved successfully!");
-        svButton.button('reset');
       },
       error: function() {
         console.log("We're unable to save your pack at this time.");
-        svButton.button('reset');
       }
     });
   },
