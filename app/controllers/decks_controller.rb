@@ -26,7 +26,7 @@ class DecksController < ApplicationController
 
     if deck.save
       respond_to do |format|
-        format.json { render json: :ok }
+        format.json { render json: deck }
       end
     end
   end
@@ -42,7 +42,7 @@ class DecksController < ApplicationController
     deck.save
 
     respond_to do |format|
-      format.json { render json: :ok }
+      format.json { render json: deck }
     end
   end
 

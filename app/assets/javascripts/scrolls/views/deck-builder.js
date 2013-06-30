@@ -63,7 +63,13 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   savePack: function() {
     this.deck.save({}, {
-      success: function() {
+      wait: true,
+      newDeck: this.deck.isNew(),
+      success: function(model, response, opts) {
+        if(opts.newDeck) {
+          Scrolls.router.deckCollection.fetch();
+          Scrolls.router.navigate('deck/' + response.id, {replace: true});
+        }
         console.log("Your pack was saved successfully!");
       },
       error: function() {
