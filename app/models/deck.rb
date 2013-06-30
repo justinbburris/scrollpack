@@ -4,6 +4,8 @@ class Deck < ActiveRecord::Base
   MIN_DECK_SIZE = 50
   MAX_SCROLLS = 3
 
+  belongs_to :user
+
   has_many :deck_scrolls
   has_many :scrolls, through: :deck_scrolls
 

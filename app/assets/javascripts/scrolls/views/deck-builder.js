@@ -76,8 +76,8 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
         Scrolls.router.deckCollection.fetch();
         Alert.success("Your pack was saved successfully!");
       },
-      error: function() {
-        Alert.error("We're unable to save your pack at this time.");
+      error: function(model, response, opts) {
+        Alert.error(response.responseJSON.error);
       }
     });
   },
@@ -118,6 +118,9 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
         wait: true,
         success: function() {
           Scrolls.router.navigate('decks/new', {trigger: true, replace: true});
+        },
+        error: function(model, response, opts) {
+          Alert.error(response.responseJSON.error);
         }
       });
     }
