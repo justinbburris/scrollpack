@@ -14,6 +14,14 @@ Scrolls.Models.Deck = Backbone.Model.extend({
     this._sync = Backbone.sync;
   },
 
+  validate: function(atts, opts) {
+    if(!atts.scrolls) {
+      return "You must have at least one scroll in your pack";
+    } else if(atts.name === "New Pack") {
+      return "You must name your pack"
+    }
+  },
+
   stats: function() {
     var scrollStats = this.deckScrolls.scrollStats();
 

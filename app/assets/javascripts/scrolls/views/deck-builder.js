@@ -9,7 +9,8 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     // Pack actions
     'click button.save-pack':   'savePack',
     'click button.load-pack':   'openLoadDialog',
-    'click button.close-load':  'closeLoadDialod',
+    'click button.close-load':  'closeLoadDialog',
+    'click a.open-pack':        'closeLoadDialog',
     'click button.delete-pack': 'deletePack'
   },
 
@@ -26,6 +27,8 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
     this.deckScrollsView = new Scrolls.Views.DeckScrollsView({deck: this.deck});
     this.deckStatsView   = new Scrolls.Views.DeckStatsView({deck: this.deck});
+
+    this.listenTo(this.deck, 'invalid', this.showError);
 
     this.listenTo(this.gameScrolls, 'hoverOverScroll', this.showPreviewScroll);
 
@@ -89,6 +92,10 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   closeLoadDialog: function() {
     this.$('#pack-list .modal').modal('hide');
+  },
+
+  showError: function() {
+    console.log(this.deck.validationError);
   },
 
   showPreviewScroll: function(scroll) {
