@@ -38,11 +38,24 @@ ul.scroll-picker {
 #deck-scrolls {
   position: relative;
 
+  .edit-name {
+    cursor: pointer;
+  }
+
+  .editing-name {
+    display: none;
+
+    input {
+      margin: 7px 0;
+    }
+  }
+
   button.empty-pack {
     position: absolute;
     right: 0;
     top: 45px;
   }
+
   ul.deck-scrolls {
     height: 700px;
     list-style: none;

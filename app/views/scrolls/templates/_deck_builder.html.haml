@@ -32,8 +32,9 @@
     #deck-options.pull-right
       %button.btn.btn-small.btn-success.save-pack Save
       %button.btn.btn-small.btn-primary.load-pack Load
+      {{#id}}
       %button.btn.btn-small.btn-danger.delete-pack Delete
-
+      {{/id}}
       -# .btn-group{data: {toggle: "buttons-radio"}}
       -#   %button.btn.btn-small.btn-primary{type: "button"} Public
       -#   %button.btn.btn-small.btn-primary{type: "button"} Private

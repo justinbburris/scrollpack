@@ -120,7 +120,7 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.deck.toJSON()));
 
     this.$('#scrolls-list').html(this.gameScrollsView.render().el);
     this.$('#deck-scrolls').html(this.deckScrollsView.render().el);

@@ -1,7 +1,9 @@
 Scrolls.Views.DeckScrollsView = Backbone.View.extend({
 
   events: {
-    'click .empty-pack': 'emptyPack'
+    'click .empty-pack': 'emptyPack',
+    'click .edit-name': 'toggleEditName',
+    'click .set-name': 'setName'
   },
 
   initialize: function(opts) {
@@ -16,6 +18,17 @@ Scrolls.Views.DeckScrollsView = Backbone.View.extend({
     this.deckScrolls.reset([]);
     this.deck.set('scrolls', []);
     this.render();
+  },
+
+  toggleEditName: function() {
+    this.$('.edit-name').toggle();
+    this.$('.editing-name').toggle();
+  },
+
+  setName: function() {
+    this.toggleEditName();
+    this.deck.set('name', this.$('#name-input').val());
+    this.$('#pack-name').html(this.deck.get('name'));
   },
 
   addedScroll: function(scroll, scrolls, options) {
