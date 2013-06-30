@@ -7,8 +7,9 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     'click .scroll-sort button': 'sortScrolls',
 
     'click button.save-pack': 'savePack',
-    'click button.load-pack': 'loadPack',
-    'click button.close-load': 'closeLoad'
+    'click button.load-pack': 'openLoadDialog',
+    'click button.close-load': 'closeLoadDialod',
+    'click a.open-pack': 'loadPack'
   },
 
   initialize: function(opts) {
@@ -71,11 +72,19 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   },
 
   loadPack: function() {
-    this.$('#pack-list').html(ich.pack_list());
-    this.$('#pack-list .modal').modal('show');
+    this.closeLoadDialog();
   },
 
-  closeLoad: function() {
+  openLoadDialog: function() {
+    var deck_collection = {
+      decks: Scrolls.router.deckCollection.models
+    };
+
+    this.$('#pack-list').html(ich.pack_list(deck_collection));
+    this.$('#pack-list .modal').modal({backdrop: false});
+  },
+
+  closeLoadDialog: function() {
     this.$('#pack-list .modal').modal('hide');
   },
 

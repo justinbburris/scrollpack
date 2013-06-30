@@ -70,6 +70,10 @@
       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
       %h3 Your packs
     .modal-body
-      %p One fine body…
+      %ul
+        {{#decks}}
+        %li
+          %a.open-pack{href: '#deck/{{id}}'} {{attributes.name}}
+        {{/decks}}
     .modal-footer
       %button.btn.close-load Close
