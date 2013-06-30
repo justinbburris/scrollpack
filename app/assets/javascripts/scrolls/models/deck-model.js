@@ -1,9 +1,5 @@
 Scrolls.Models.Deck = Backbone.Model.extend({
 
-  defaults: {
-    name: 'New Pack',
-  },
-
   urlRoot: '/decks',
 
   initialize: function() {
@@ -17,7 +13,7 @@ Scrolls.Models.Deck = Backbone.Model.extend({
   validate: function(atts, opts) {
     if(! this.deckScrolls.length > 0) {
       return "You must have at least one scroll in your pack";
-    } else if(atts.name === "New Pack") {
+    } else if(! atts.name) {
       return "You must name your pack"
     }
   },

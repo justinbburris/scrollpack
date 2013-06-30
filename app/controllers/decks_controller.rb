@@ -12,7 +12,9 @@ class DecksController < ApplicationController
   end
 
   def update
-    deck = Deck.find(params[:id])
+    deck      = Deck.find(params[:id])
+    deck.name = params[:name]
+
     deck_scrolls = []
     params[:scrolls].each do |scroll|
       deck_scroll = DeckScroll.find_or_initialize_by_scroll_id_and_deck_id(scroll_id: scroll[:id],

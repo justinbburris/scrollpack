@@ -29,7 +29,6 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     this.deckStatsView   = new Scrolls.Views.DeckStatsView({deck: this.deck});
 
     this.listenTo(this.deck, 'invalid', this.showError);
-    this.listenTo(this.deck, 'change:name', this.setName);
 
     this.listenTo(this.gameScrolls, 'hoverOverScroll', this.showPreviewScroll);
 
@@ -72,9 +71,9 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
       deckView: this,
       success: function(model, response, opts) {
         if(opts.newDeck) {
-          Scrolls.router.deckCollection.fetch();
           Scrolls.router.navigate('deck/' + response.id, {replace: true, trigger: true});
         }
+        Scrolls.router.deckCollection.fetch();
         Alert.success("Your pack was saved successfully!");
       },
       error: function() {
@@ -105,10 +104,6 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   showError: function() {
     Alert.error(this.deck.validationError);
-  },
-
-  setName: function() {
-    this.$('#pack-name').html(this.deck.get('name'));
   },
 
   showPreviewScroll: function(scroll) {
