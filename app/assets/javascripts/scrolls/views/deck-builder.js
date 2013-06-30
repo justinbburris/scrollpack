@@ -6,7 +6,9 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
     'click .scroll-sort button': 'sortScrolls',
 
-    'click button.save-pack': 'savePack'
+    'click button.save-pack': 'savePack',
+    'click button.load-pack': 'loadPack',
+    'click button.close-load': 'closeLoad'
   },
 
   initialize: function(opts) {
@@ -66,6 +68,15 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
         console.log("We're unable to save your pack at this time.");
       }
     });
+  },
+
+  loadPack: function() {
+    this.$('#pack-list').html(ich.pack_list());
+    this.$('#pack-list .modal').modal('show');
+  },
+
+  closeLoad: function() {
+    this.$('#pack-list .modal').modal('hide');
   },
 
   showPreviewScroll: function(scroll) {

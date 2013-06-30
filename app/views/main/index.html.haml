@@ -63,3 +63,13 @@
     %tr
       %td Scroll Count
       %td {{scrollCount}}
+
+%script{type: "text/html", id: "pack_list"}
+  .modal.hide.fade
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3 Your packs
+    .modal-body
+      %p One fine body…
+    .modal-footer
+      %button.btn.close-load Close
