@@ -28,7 +28,6 @@ Scrolls.Views.DeckScrollsView = Backbone.View.extend({
   setName: function() {
     this.toggleEditName();
     this.deck.set('name', this.$('#name-input').val());
-    this.$('#pack-name').html(this.deck.get('name'));
   },
 
   addedScroll: function(scroll, scrolls, options) {

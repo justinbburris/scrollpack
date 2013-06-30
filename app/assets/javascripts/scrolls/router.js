@@ -43,10 +43,10 @@ Scrolls.Router = Backbone.Router.extend({
         gameScrolls: router.gameScrolls,
       });
 
-      router.deckBuild(deckBuilderView.render().el);
       deck.fetch({
         reset: true,
         success: function(model) {
+          router.deckBuild(deckBuilderView.render().el);
           model.populateScrolls(router.gameScrolls);
         }
       });

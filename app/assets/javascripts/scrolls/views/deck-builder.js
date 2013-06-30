@@ -10,7 +10,7 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     'click button.save-pack':   'savePack',
     'click button.load-pack':   'openLoadDialog',
     'click button.close-load':  'closeLoadDialog',
-    'click a.open-pack':        'closeLoadDialog',
+    'click a.open-pack':        'openPack',
     'click button.delete-pack': 'deletePack'
   },
 
@@ -29,6 +29,7 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     this.deckStatsView   = new Scrolls.Views.DeckStatsView({deck: this.deck});
 
     this.listenTo(this.deck, 'invalid', this.showError);
+    this.listenTo(this.deck, 'change:name', this.setName);
 
     this.listenTo(this.gameScrolls, 'hoverOverScroll', this.showPreviewScroll);
 
@@ -68,10 +69,11 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     this.deck.save({}, {
       wait: true,
       newDeck: this.deck.isNew(),
+      deckView: this,
       success: function(model, response, opts) {
         if(opts.newDeck) {
           Scrolls.router.deckCollection.fetch();
-          Scrolls.router.navigate('deck/' + response.id, {replace: true});
+          Scrolls.router.navigate('deck/' + response.id, {replace: true, trigger: true});
         }
         Alert.success("Your pack was saved successfully!");
       },
@@ -94,8 +96,19 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     this.$('#pack-list .modal').modal('hide');
   },
 
+  openPack: function(e) {
+    e.preventDefault();
+    this.closeLoadDialog();
+
+    Scrolls.router.navigate(e.currentTarget.hash, {trigger: true});
+  },
+
   showError: function() {
     Alert.error(this.deck.validationError);
+  },
+
+  setName: function() {
+    this.$('#pack-name').html(this.deck.get('name'));
   },
 
   showPreviewScroll: function(scroll) {

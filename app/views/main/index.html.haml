@@ -89,7 +89,7 @@
       %ul
         {{#decks}}
         %li
-          %a.open-pack{href: '#deck/{{id}}'} {{attributes.name}}
+          %a.open-pack{href: '#deck/{{id}}', data: {id: '{{id}}'}} {{attributes.name}}
         {{/decks}}
     .modal-footer
       %button.btn.close-load Close
