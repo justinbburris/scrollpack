@@ -46,4 +46,11 @@ class DecksController < ApplicationController
     end
   end
 
+  def destroy
+    deck = Deck.find(params[:id])
+
+    if deck.destroy
+      render json: :ok
+    end
+  end
 end

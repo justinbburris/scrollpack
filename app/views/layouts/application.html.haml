@@ -14,7 +14,7 @@
   %body
     .navbar.navbar-inverse
       .navbar-inner
-        %a.brand{:href => "#"} ScrollPack
+        %a.brand{href: '/'} ScrollPack
         - if user_signed_in?
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'pull-right'
         - else

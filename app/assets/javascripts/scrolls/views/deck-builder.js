@@ -1,15 +1,16 @@
 Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   events: {
+    // Sorting & filtering
     'click .scroll-filter button': 'filterScrolls',
-    'click button.clear-filter': 'removeScrollFilter',
+    'click button.clear-filter':   'removeScrollFilter',
+    'click .scroll-sort button':   'sortScrolls',
 
-    'click .scroll-sort button': 'sortScrolls',
-
-    'click button.save-pack': 'savePack',
-    'click button.load-pack': 'openLoadDialog',
-    'click button.close-load': 'closeLoadDialod',
-    'click a.open-pack': 'loadPack'
+    // Pack actions
+    'click button.save-pack':   'savePack',
+    'click button.load-pack':   'openLoadDialog',
+    'click button.close-load':  'closeLoadDialod',
+    'click button.delete-pack': 'deletePack'
   },
 
   initialize: function(opts) {
@@ -71,10 +72,6 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
     });
   },
 
-  loadPack: function() {
-    this.closeLoadDialog();
-  },
-
   openLoadDialog: function() {
     var deck_collection = {
       decks: Scrolls.router.deckCollection.models
@@ -90,6 +87,19 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
 
   showPreviewScroll: function(scroll) {
     this.$('#scroll-preview').html(ich.preview_scroll(scroll.toJSON()));
+  },
+
+  deletePack: function() {
+    var r = window.confirm("Are you sure you want to discard this pack?");
+
+    if(r) {
+      this.deck.destroy({
+        wait: true,
+        success: function() {
+          Scrolls.router.navigate('decks/new', {trigger: true, replace: true});
+        }
+      });
+    }
   },
 
   renderStats: function() {
