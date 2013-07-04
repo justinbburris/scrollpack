@@ -1,6 +1,7 @@
 Scrolls.Router = Backbone.Router.extend({
 
   routes: {
+    'decks/all': 'allDecks',
     'decks/new': 'newDeck',
     'deck/:id': 'showDeck',
     '': 'index'
@@ -21,6 +22,13 @@ Scrolls.Router = Backbone.Router.extend({
     }
 
     ga('send', 'pageview', url);
+  },
+
+  allDecks: function() {
+    var deckList = new Scrolls.Collections.DeckCollection([], {url: 'decks/all'});
+    var allDecksView = new Scrolls.Views.AllDecksView({collection: deckList});
+
+    this.applicationBuild(allDecksView.render().el);
   },
 
   newDeck: function() {
@@ -58,6 +66,8 @@ Scrolls.Router = Backbone.Router.extend({
 
     this.applicationBuild(mainView.render().el);
   },
+
+  /* Common functions */
 
   applicationBuild: function(view) {
     $('#main-view').html(this.applicationLayout());

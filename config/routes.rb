@@ -4,7 +4,9 @@ ScrollsBuilder::Application.routes.draw do
 
   resources :scrolls
 
-  resources :decks
+  resources :decks do
+    collection { get :all }
+  end
 
   root :to => 'main#index'
 

@@ -12,6 +12,12 @@
 %script{type: "text/html", id: "main_view"}
   = render "main/templates/landing"
 
+%script{type: "text/html", id: "all_decks"}
+  = render "decks/templates/all_decks"
+
+%script{type: "text/html", id: "deck_item"}
+  %li {{name}}
+
 %script{type: "text/html", id: "deck_builder"}
   = render "scrolls/templates/deck_builder"
 

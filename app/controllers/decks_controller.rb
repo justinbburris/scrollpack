@@ -1,11 +1,17 @@
 class DecksController < ApplicationController
   before_filter :authenticate_user!, only: [:update, :create, :destroy]
-  before_filter :load_deck, except: [:index, :create]
+  before_filter :load_deck, only: [:show, :update, :destroy]
   before_filter :ensure_ownership, only: [:update, :destroy]
 
   def index
     respond_to do |format|
       format.json { render json: current_user.decks }
+    end
+  end
+
+  def all
+    respond_to do |format|
+      format.json { render json: Deck.all }
     end
   end
 
