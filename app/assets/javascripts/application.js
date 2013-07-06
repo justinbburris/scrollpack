@@ -18,4 +18,5 @@
 //= require backbone
 //= require icanhaz-no-mustache
 //= require alert
+//= require ./app_init
 //= require scrolls/index

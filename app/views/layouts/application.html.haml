@@ -40,3 +40,21 @@
       ga('create', 'UA-41598711-1', 'scrollpack.com');
 
     = javascript_include_tag "application"
+
+    - if user_signed_in?
+      :javascript
+        window.User = window.User || {
+
+          logged_in: #{user_signed_in?},
+
+          user: null,
+
+          initialize: function(callback) {
+            this.user = new Scrolls.Models.User();
+            this.user.fetch({
+              wait:true,
+              reset: true,
+              success: callback
+            });
+          }
+        }

@@ -5,24 +5,24 @@ class DecksController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: current_user.decks }
+      format.json { render json: current_user.decks, each_serializer: DeckSerializer }
     end
   end
 
   def all
     respond_to do |format|
-      format.json { render json: Deck.all }
+      format.json { render json: Deck.all, each_serializer: DeckSerializer }
     end
   end
 
   def show
     respond_to do |format|
-      format.json { render json: @deck }
+      format.json { render json: @deck, serializer: DeckSerializer }
     end
   end
 
   def update
-    @deck.name = params[:name]
+    @deck.update_attributes(params.slice(:name))
 
     deck_scrolls = []
     params[:scrolls].each do |scroll|
@@ -31,7 +31,7 @@ class DecksController < ApplicationController
       deck_scroll.count = scroll[:count]
 
       deck_scrolls << deck_scroll
-    end if params[:scrolls]
+    end if params[:scrolls] && params[:scrolls] != nil
 
     @deck.deck_scrolls = deck_scrolls
 
@@ -64,6 +64,12 @@ class DecksController < ApplicationController
     end
   end
 
+  def add_view
+    deck = Deck.find(params[:id])
+    deck.update_attribute('views', deck.views + 1)
+    deck.save
+  end
+
   private
 
   def load_deck
@@ -75,4 +81,9 @@ class DecksController < ApplicationController
       render status: :unauthorized
     end
   end
+
+  def default_serializer_options
+    {root: false}
+  end
+
 end

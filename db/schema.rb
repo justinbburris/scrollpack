@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130630225724) do
+ActiveRecord::Schema.define(:version => 20130704030119) do
+
+  create_table "deck_favorites", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "deck_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "deck_scrolls", :force => true do |t|
     t.integer  "scroll_id"
@@ -23,9 +30,10 @@ ActiveRecord::Schema.define(:version => 20130630225724) do
 
   create_table "decks", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "user_id"
+    t.integer  "views",      :default => 0
   end
 
   create_table "parser_checksums", :force => true do |t|

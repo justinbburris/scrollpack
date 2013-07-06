@@ -2,10 +2,17 @@ ScrollsBuilder::Application.routes.draw do
 
   devise_for :users
 
+  devise_scope :user do
+    get 'users', to: 'devise/users#show'
+    put 'users/add_favorite/:deck_id', to: 'devise/users#add_favorite'
+    delete 'users/remove_favorite/:deck_id', to: 'devise/users#remove_favorite'
+  end
+
   resources :scrolls
 
   resources :decks do
     collection { get :all }
+    member { put :add_view }
   end
 
   root :to => 'main#index'

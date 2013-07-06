@@ -1,4 +1,3 @@
-//= require ./scrolls_backbone_init
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
@@ -8,6 +7,17 @@
 $(function() {
   "use strict";
 
+  if(User.logged_in) {
+    User.initialize(function() {
+      Scrolls.init_app();
+    });
+  } else {
+    Scrolls.init_app();
+  }
+
+});
+
+Scrolls.init_app = function() {
   Scrolls.router = new Scrolls.Router();
   Backbone.history.start();
-});
+}

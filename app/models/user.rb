@@ -10,4 +10,18 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :decks
+  has_many :deck_favorites
+  has_many :favorites, through: :deck_favorites, source: :deck
+
+  def user_json(options={})
+    resp = self.as_json(only: :id,
+                        include: {
+                          favorites: {only: :id }
+                        })
+
+    resp[:favorites] = resp[:favorites].map {|deck| deck['id']}
+
+    resp
+  end
+
 end

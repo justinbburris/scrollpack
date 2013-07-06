@@ -17,20 +17,25 @@
 
 %script{type: "text/html", id: "deck_item"}
   %li
-    %i.icon-star-empty.deck-favorite
+    <i class='favorite-icon
+    {{#favorite}}
+    icon-star
+    {{/favorite}}
+    {{^favorite}}
+    icon-star-empty can-favorite
+    {{/favorite}}' />
     %h3
       %a{href: '#deck/{{id}}'} {{name}}
     %span.label.label-order Order
     %span.label.label-energy Energy
     %span.label.label-growth Growth
-    %i.icon-info-sign
 
-    .pull-right.deck-stats
+    .pull-right.deck-analytics
       %i.icon-star
-      2,342
+      {{favorites}}
       %i.icon-eye-open
-      4,234
-
+      {{views}}
+  
 %script{type: "text/html", id: "deck_builder"}
   = render "scrolls/templates/deck_builder"
 
