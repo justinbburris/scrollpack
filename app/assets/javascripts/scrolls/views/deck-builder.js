@@ -133,6 +133,12 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   render: function() {
     var deckData = _.extend(this.deck.toJSON(), {canEditDeck: false});
 
+    if(User.logged_in && _.contains(User.user.get('favorites'), this.deck.get('id'))) {
+      deckData.favoriteIcon = 'icon-star';
+    } else {
+      deckData.favoriteIcon = 'icon-star-empty can-favorite';
+    }
+
     if(this.deck.get('user_id') === User.user.get('id')) {
       deckData.canEditDeck = true;
     }
@@ -149,3 +155,5 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   }
     
 });
+
+Cocktail.mixin(Scrolls.Views.DeckBuilderView, Scrolls.Mixins.DeckFavorite);

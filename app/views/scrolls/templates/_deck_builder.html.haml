@@ -27,21 +27,20 @@
       %button.btn.btn-mini.btn-primary{type: "button",
                                        data: {sorter: 'resource_type'}} Resource Type
 
-- if user_signed_in?
-  {{#canEditDeck}}
-  .row
-    .span5.offset5
-      #deck-options.pull-right
-        %button.btn.btn-small.btn-success.save-pack Save
-        %button.btn.btn-small.btn-primary.load-pack Load
-        {{#id}}
-        %button.btn.btn-small.btn-danger.delete-pack Delete
-        {{/id}}
-        -# .btn-group{data: {toggle: "buttons-radio"}}
-        -#   %button.btn.btn-small.btn-primary{type: "button"} Public
-        -#   %button.btn.btn-small.btn-primary{type: "button"} Private
-  {{/canEditDeck}}
-
+.row
+  .span5.offset5
+    %i.favorite-icon.pull-right{class: '{{favoriteIcon}}'}
+    {{#canEditDeck}}
+    #deck-options.pull-right
+      %button.btn.btn-small.btn-success.save-pack Save
+      %button.btn.btn-small.btn-primary.load-pack Load
+      {{#id}}
+      %button.btn.btn-small.btn-danger.delete-pack Delete
+      {{/id}}
+      -# .btn-group{data: {toggle: "buttons-radio"}}
+      -#   %button.btn.btn-small.btn-primary{type: "button"} Public
+      -#   %button.btn.btn-small.btn-primary{type: "button"} Private
+    {{/canEditDeck}}
 .row
   .span2
     #scrolls-list

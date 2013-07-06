@@ -17,6 +17,7 @@
 //= require underscore
 //= require backbone
 //= require icanhaz-no-mustache
+//= require cocktail
 //= require alert
 //= require ./app_init
 //= require scrolls/index

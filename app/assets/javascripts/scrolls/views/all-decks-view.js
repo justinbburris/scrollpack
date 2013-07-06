@@ -26,7 +26,7 @@ Scrolls.Views.AllDecksView = Backbone.View.extend({
   showDecks: function() {
     var deckItems = [];
     _.each(this.collection.models, function(deck) {
-      var deckItem = new Scrolls.Views.DeckItemView({model: deck});
+      var deckItem = new Scrolls.Views.DeckItemView({deck: deck});
       deckItems.push(deckItem.render().el);
     });
 

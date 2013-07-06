@@ -3,64 +3,34 @@ Scrolls.Views.DeckItemView = Backbone.View.extend({
   tagName: 'li',
 
   events: {
-    'mouseenter i.can-favorite': 'toggleFavorite',
-    'mouseleave i.can-favorite': 'toggleFavorite',
-    'click .favorite-icon': 'updateFavorite',
     'click a': 'addView'
   },
 
-  initialize: function() {
+  initialize: function(opts) {
+    this.deck     = opts.deck
     this.template = ich.deck_item;
 
-    this.listenTo(this.model, 'change:favorites', this.render);
-  },
-
-  toggleFavorite: function() {
-    this.$('i.favorite-icon').toggleClass('icon-star-empty icon-star');
-  },
-
-  updateFavorite: function(evt) {
-    var deck = this.model;
-
-    if($(evt.currentTarget).hasClass('can-favorite')) {
-      User.user.save({}, {
-        url: 'users/add_favorite/' + this.model.get('id'),
-        success: function(model, response) {
-          User.user.set('favorites', response.favorites);
-          deck.set('favorites', deck.get('favorites') + 1);
-        }
-      });
-    } else {
-      User.user.destroy({
-        url: 'users/remove_favorite/' + this.model.get('id'),
-        success: function(model, response) {
-          User.user.set('favorites', response.favorites);
-          deck.set('favorites', deck.get('favorites') - 1);
-        }
-      });
-    }
-
-    $(evt.currentTarget).toggleClass('can-favorite');
+    this.listenTo(this.deck, 'change:favorites', this.render);
   },
 
   addView: function() {
-    this.model.save(
-      {views: this.model.get('views') + 1},
-      {validate: false, url: 'decks/' + this.model.get('id') + '/add_view'}
+    this.deck.save(
+      {views: this.deck.get('views') + 1},
+      {validate: false, url: 'decks/' + this.deck.get('id') + '/add_view'}
     );
   },
 
   render: function() {
     var deck = {
-      id: this.model.get('id'),
-      name: this.model.get('name'),
+      id: this.deck.get('id'),
+      name: this.deck.get('name'),
       favoriteIcon: 'icon-star-empty can-favorite',
-      favorites: this.model.get('favorites'),
-      resources: this.model.get('resources'),
-      views: this.model.get('views')
+      favorites: this.deck.get('favorites'),
+      resources: this.deck.get('resources'),
+      views: this.deck.get('views')
     };
 
-    if(User.logged_in && _.contains(User.user.get('favorites'), this.model.get('id'))) {
+    if(User.logged_in && _.contains(User.user.get('favorites'), this.deck.get('id'))) {
       deck.favoriteIcon = 'icon-star';
     }
 
@@ -70,3 +40,5 @@ Scrolls.Views.DeckItemView = Backbone.View.extend({
   }
 
 });
+
+Cocktail.mixin(Scrolls.Views.DeckItemView, Scrolls.Mixins.DeckFavorite);
