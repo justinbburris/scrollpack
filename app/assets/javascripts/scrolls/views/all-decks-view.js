@@ -25,16 +25,19 @@ Scrolls.Views.AllDecksView = Backbone.View.extend({
 
   showDecks: function() {
     var deckItems = [];
-    _.each(this.collection.models, function(deck) {
-      var deckItem = new Scrolls.Views.DeckItemView({deck: deck});
-      deckItems.push(deckItem.render().el);
-    });
+    if(this.collection.models.length > 0) {
+      _.each(this.collection.models, function(deck) {
+        var deckItem = new Scrolls.Views.DeckItemView({deck: deck});
+        deckItems.push(deckItem.render().el);
+      });
+    } else {
+      var deckItems = "<li><h3>Sorry there are no packs to show you</h3></li>";
+    }
 
     this.$('ul').html(deckItems);
   },
 
   render: function() {
-
     this.$el.html(this.template());
 
     this.collection.fetch({reset: true});
