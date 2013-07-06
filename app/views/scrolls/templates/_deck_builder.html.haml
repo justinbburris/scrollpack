@@ -28,6 +28,7 @@
                                        data: {sorter: 'resource_type'}} Resource Type
 
 - if user_signed_in?
+  {{#canEditDeck}}
   .row
     .span5.offset5
       #deck-options.pull-right
@@ -39,6 +40,7 @@
         -# .btn-group{data: {toggle: "buttons-radio"}}
         -#   %button.btn.btn-small.btn-primary{type: "button"} Public
         -#   %button.btn.btn-small.btn-primary{type: "button"} Private
+  {{/canEditDeck}}
 
 .row
   .span2

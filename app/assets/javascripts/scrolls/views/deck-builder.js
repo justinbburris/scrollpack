@@ -131,7 +131,13 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template(this.deck.toJSON()));
+    var deckData = _.extend(this.deck.toJSON(), {canEditDeck: false});
+
+    if(this.deck.get('user_id') === User.user.get('id')) {
+      deckData.canEditDeck = true;
+    }
+
+    this.$el.html(this.template(deckData));
 
     this.$('#scrolls-list').html(this.gameScrollsView.render().el);
     this.$('#deck-scrolls').html(this.deckScrollsView.render().el);

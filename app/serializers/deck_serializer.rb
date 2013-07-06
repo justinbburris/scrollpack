@@ -1,5 +1,5 @@
 class DeckSerializer < ActiveModel::Serializer
-  attributes :id, :name, :views, :maxScrolls, :minDeckSize, :scrolls, :favorites, :resources
+  attributes :id, :user_id, :name, :views, :maxScrolls, :minDeckSize, :scrolls, :favorites, :resources
 
   def maxScrolls
     Deck::MAX_SCROLLS
