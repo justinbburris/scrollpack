@@ -53,6 +53,7 @@ Scrolls.Views.DeckItemView = Backbone.View.extend({
       name: this.model.get('name'),
       favorite: false,
       favorites: this.model.get('favorites'),
+      resources: this.model.get('resources'),
       views: this.model.get('views')
     };
 

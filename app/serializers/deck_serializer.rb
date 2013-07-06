@@ -1,5 +1,5 @@
 class DeckSerializer < ActiveModel::Serializer
-  attributes :id, :name, :views, :maxScrolls, :minDeckSize, :scrolls, :favorites
+  attributes :id, :name, :views, :maxScrolls, :minDeckSize, :scrolls, :favorites, :resources
 
   def maxScrolls
     Deck::MAX_SCROLLS
@@ -15,6 +15,22 @@ class DeckSerializer < ActiveModel::Serializer
 
   def favorites
     object.deck_favorites.count
+  end
+
+  def resources
+    resources = object.scrolls.inject({}) do |hsh, scroll|
+      hsh[scroll[:resource_type]] ||= 0
+      hsh[scroll[:resource_type]] += 1
+
+      hsh
+    end
+
+    resources.map do |key, value|
+      {
+        name: key,
+        count: value
+      }
+    end
   end
 
 end

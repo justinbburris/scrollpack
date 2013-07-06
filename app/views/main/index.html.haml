@@ -26,9 +26,9 @@
     {{/favorite}}' />
     %h3
       %a{href: '#deck/{{id}}'} {{name}}
-    %span.label.label-order Order
-    %span.label.label-energy Energy
-    %span.label.label-growth Growth
+    {{#resources}}
+    %span.label{class: 'label-{{name}}'} {{name}}
+    {{/resources}}
 
     .pull-right.deck-analytics
       %i.icon-star
