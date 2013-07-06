@@ -2,6 +2,8 @@ Scrolls.Router = Backbone.Router.extend({
 
   routes: {
     'decks/all': 'allDecks',
+    'decks/mine': 'myDecks',
+    'decks/favorites': 'favoriteDecks',
     'decks/new': 'newDeck',
     'deck/:id': 'showDeck',
     '': 'index'
@@ -27,6 +29,20 @@ Scrolls.Router = Backbone.Router.extend({
   allDecks: function() {
     var deckList = new Scrolls.Collections.DeckCollection([], {url: 'decks/all'});
     var allDecksView = new Scrolls.Views.AllDecksView({collection: deckList});
+
+    this.applicationBuild(allDecksView.render().el);
+  },
+
+  myDecks: function() {
+    var myDecks = new Scrolls.Collections.DeckCollection();
+    var allDecksView = new Scrolls.Views.AllDecksView({collection: myDecks});
+
+    this.applicationBuild(allDecksView.render().el);
+  },
+
+  favoriteDecks: function() {
+    var favoriteDecks = new Scrolls.Collections.DeckCollection([], {url: 'decks/favorites'});
+    var allDecksView = new Scrolls.Views.AllDecksView({collection: favoriteDecks});
 
     this.applicationBuild(allDecksView.render().el);
   },

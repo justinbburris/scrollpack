@@ -12,6 +12,7 @@ ScrollsBuilder::Application.routes.draw do
 
   resources :decks do
     collection { get :all }
+    collection { get :favorites }
     member { put :add_view }
   end
 

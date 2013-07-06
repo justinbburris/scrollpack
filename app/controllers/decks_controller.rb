@@ -15,12 +15,6 @@ class DecksController < ApplicationController
     end
   end
 
-  def all
-    respond_to do |format|
-      format.json { render json: Deck.all, each_serializer: DeckSerializer }
-    end
-  end
-
   def show
     respond_to do |format|
       format.json { render json: @deck, serializer: DeckSerializer }
@@ -69,6 +63,19 @@ class DecksController < ApplicationController
       render json: :ok
     end
   end
+
+  def all
+    respond_to do |format|
+      format.json { render json: Deck.all, each_serializer: DeckSerializer }
+    end
+  end
+
+  def favorites
+    respond_to do |format|
+      format.json { render json: current_user.favorites, each_serializer: DeckSerializer }
+    end
+  end
+
 
   def add_view
     deck = Deck.find(params[:id])

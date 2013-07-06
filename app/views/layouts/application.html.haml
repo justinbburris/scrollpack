@@ -20,6 +20,11 @@
             %a{href: '#decks/new'} New Pack
           %li
             %a{href: '#decks/all'} All Packs
+          %li
+            %a{href: '#decks/mine'} Your Packs
+          %li
+            %a{href: '#decks/favorites'} Your Favorites
+
         - if user_signed_in?
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'pull-right'
         - else
