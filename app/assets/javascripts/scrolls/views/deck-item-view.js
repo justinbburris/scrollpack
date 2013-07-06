@@ -1,4 +1,7 @@
 Scrolls.Views.DeckItemView = Backbone.View.extend({
+
+  tagName: 'li',
+
   events: {
     'mouseenter i.can-favorite': 'toggleFavorite',
     'mouseleave i.can-favorite': 'toggleFavorite',

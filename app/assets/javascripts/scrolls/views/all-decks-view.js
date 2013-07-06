@@ -1,5 +1,9 @@
 Scrolls.Views.AllDecksView = Backbone.View.extend({
 
+  attributes: {
+    id: 'all-scroll-packs'
+  },
+
   initialize: function() {
     this.template = ich.all_decks;
 

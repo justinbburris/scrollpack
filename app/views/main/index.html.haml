@@ -16,19 +16,18 @@
   = render "decks/templates/all_decks"
 
 %script{type: "text/html", id: "deck_item"}
-  %li
-    %i.favorite-icon{class: '{{favoriteIcon}}'}
-    %h3
-      %a{href: '#deck/{{id}}'} {{name}}
-    {{#resources}}
-    %span.label{class: 'label-{{name}}'} {{name}}
-    {{/resources}}
+  %i.favorite-icon{class: '{{favoriteIcon}}'}
+  %h3
+    %a{href: '#deck/{{id}}'} {{name}}
+  {{#resources}}
+  %span.label{class: 'label-{{name}}'} {{name}}
+  {{/resources}}
 
-    .pull-right.deck-analytics
-      %i.icon-star
-      {{favorites}}
-      %i.icon-eye-open
-      {{views}}
+  .pull-right.deck-analytics
+    %i.icon-star
+    {{favorites}}
+    %i.icon-eye-open
+    {{views}}
   
 %script{type: "text/html", id: "deck_builder"}
   = render "scrolls/templates/deck_builder"
