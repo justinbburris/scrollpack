@@ -41,20 +41,18 @@
 
     = javascript_include_tag "application"
 
-    - if user_signed_in?
-      :javascript
-        window.User = window.User || {
+    :javascript
+      window.User = window.User || {
+        logged_in: #{user_signed_in?},
 
-          logged_in: #{user_signed_in?},
+        user: null,
 
-          user: null,
-
-          initialize: function(callback) {
-            this.user = new Scrolls.Models.User();
-            this.user.fetch({
-              wait:true,
-              reset: true,
-              success: callback
-            });
-          }
+        initialize: function(callback) {
+          this.user = new Scrolls.Models.User();
+          this.user.fetch({
+            wait:true,
+            reset: true,
+            success: callback
+          });
         }
+      }

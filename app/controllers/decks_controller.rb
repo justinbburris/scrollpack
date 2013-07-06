@@ -5,7 +5,13 @@ class DecksController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: current_user.decks, each_serializer: DeckSerializer }
+      format.json {
+        if user_signed_in?
+          render json: current_user.decks, each_serializer: DeckSerializer
+        else
+          render json: []
+        end
+      }
     end
   end
 
