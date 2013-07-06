@@ -10,9 +10,19 @@ Scrolls.Collections.ScrollCollection = Backbone.Collection.extend ({
     resource_type: []
   },
 
-  comparator: function( collection ) {
-    var that = this;
-    return( collection.get( that.sorter ) );
+  comparator: function(scroll) {
+    if(this.sorter === 'rarity') {
+      var rarity = scroll.get(this.sorter);
+      if(rarity === 'Common') {
+        return -6;
+      } else if(rarity === 'Uncommon') {
+        return -4;
+      } else {
+        return -2;
+      }
+    } else {
+      return scroll.get(this.sorter);
+    }
   },
 
   initialize: function() {
