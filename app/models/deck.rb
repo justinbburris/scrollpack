@@ -9,4 +9,6 @@ class Deck < ActiveRecord::Base
   has_many :deck_scrolls
   has_many :scrolls, through: :deck_scrolls
   has_many :deck_favorites
+
+  default_scope order('created_at DESC')
 end
