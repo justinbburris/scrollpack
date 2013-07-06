@@ -139,7 +139,7 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
       deckData.favoriteIcon = 'icon-star-empty can-favorite';
     }
 
-    if(this.deck.get('user_id') === User.user.get('id')) {
+    if(this.deck.isNew() || this.deck.get('user_id') === User.user.get('id')) {
       deckData.canEditDeck = true;
     }
 
