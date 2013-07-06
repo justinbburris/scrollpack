@@ -38,14 +38,23 @@
 
 %script{type: "text/html", id: "deck_scrolls"}
   .header
-    .edit-name
-      %h4#pack-name.pull-left {{name}}
-      %i.icon-pencil.pull-left
-    .editing-name
-      %input#name-input{type: 'text', value: '{{name}}', placeholder: 'Name your pack'}
-      %button.btn.btn-primary.rename Rename
   %button.btn.btn-mini.btn-danger.empty-pack Empty Pack
   %ul.deck-scrolls
+
+%script{type: "text/html", id: "edit_deck_name"}
+  .edit-name
+    {{#name}}
+    %h4#pack-name.pull-left {{name}}
+    {{/name}}
+    {{^name}}
+    %h4#pack-name.pull-left.no-pack-name Name your pack...
+    {{/name}}
+
+    %i.icon-pencil.pull-left
+  .editing-name
+    %input#name-input{type: 'text', value: '{{name}}', placeholder: 'Name your pack...'}
+    %button.btn.btn-primary.rename Rename
+    %button.btn.btn-danger.cancel-rename Cancel
 
 %script{type: "text/html", id: "preview_scroll"}
   %h4 Preview

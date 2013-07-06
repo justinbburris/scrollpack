@@ -1,9 +1,10 @@
 Scrolls.Views.DeckScrollsView = Backbone.View.extend({
 
   events: {
-    'click .empty-pack': 'emptyPack',
-    'click .edit-name':  'toggleEditName',
-    'click .rename':     'rename'
+    'click .empty-pack':    'emptyPack',
+    'click .edit-name':     'toggleEditName',
+    'click .rename':        'rename',
+    'click .cancel-rename': 'setName'
   },
 
   initialize: function(opts) {
@@ -13,7 +14,7 @@ Scrolls.Views.DeckScrollsView = Backbone.View.extend({
 
     this.listenTo(this.deck, 'change:name', this.setName);
 
-    this.listenTo(this.deckScrolls, 'add', this.addedScroll);
+    this.listenTo(this.deckScrolls, 'add', this.addScroll);
   },
 
   emptyPack: function() {
@@ -29,21 +30,20 @@ Scrolls.Views.DeckScrollsView = Backbone.View.extend({
 
   rename: function() {
     this.deck.set('name', this.$('#name-input').val());
-    this.toggleEditName();
   },
 
   setName: function() {
-    this.$('#pack-name').html(this.deck.get('name'));
+    this.$('.header').html(ich.edit_deck_name(this.deck.toJSON()));
   },
 
-
-  addedScroll: function(scroll, scrolls, options) {
+  addScroll: function(scroll, scrolls, options) {
     var deckScrollView = new Scrolls.Views.DeckScrollView({scroll: scroll, deckScrolls: this.deckScrolls});
     this.$('ul').append(deckScrollView.render().el);
   },
 
   render: function() {
-    this.$el.html(this.template(this.deck.toJSON()));
+    this.$el.html(this.template);
+    this.$('.header').html(ich.edit_deck_name(this.deck.toJSON()));
 
     return this;
   }
