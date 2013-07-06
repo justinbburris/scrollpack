@@ -51,14 +51,14 @@ Scrolls.Views.DeckItemView = Backbone.View.extend({
     var deck = {
       id: this.model.get('id'),
       name: this.model.get('name'),
-      favorite: false,
+      favoriteIcon: 'icon-star-empty can-favorite',
       favorites: this.model.get('favorites'),
       resources: this.model.get('resources'),
       views: this.model.get('views')
     };
 
-    if(User.logged_in) {
-      deck.favorite = _.contains(User.user.get('favorites'), this.model.get('id'));
+    if(User.logged_in && _.contains(User.user.get('favorites'), this.model.get('id'))) {
+      deck.favoriteIcon = 'icon-star';
     }
 
     this.$el.html(this.template(deck));

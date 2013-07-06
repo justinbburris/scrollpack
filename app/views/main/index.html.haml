@@ -17,7 +17,7 @@
 
 %script{type: "text/html", id: "deck_item"}
   %li
-    <i class='favorite-icon icon-star' />
+    %i.favorite-icon{class: '{{favoriteIcon}}'}
     %h3
       %a{href: '#deck/{{id}}'} {{name}}
     {{#resources}}
