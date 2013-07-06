@@ -84,12 +84,8 @@ class DecksController < ApplicationController
 
   def ensure_ownership
     if current_user != @deck.user
-      render status: :unauthorized
+      render status: :forbidden
     end
-  end
-
-  def default_serializer_options
-    {root: false}
   end
 
 end
