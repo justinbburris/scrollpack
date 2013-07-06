@@ -17,13 +17,13 @@
         %a.brand{href: '/'} ScrollPack
         %ul.nav
           %li
-            %a{href: '#decks/new'} New Pack
+            %a{href: '#packs/new'} New Pack
           %li
-            %a{href: '#decks/all'} All Packs
+            %a{href: '#packs/all'} All Packs
           %li
-            %a{href: '#decks/mine'} Your Packs
+            %a{href: '#packs/mine'} Your Packs
           %li
-            %a{href: '#decks/favorites'} Your Favorites
+            %a{href: '#packs/favorites'} Your Favorites
 
         - if user_signed_in?
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'pull-right'

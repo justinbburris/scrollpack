@@ -71,7 +71,7 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
       deckView: this,
       success: function(model, response, opts) {
         if(opts.newDeck) {
-          Scrolls.router.navigate('deck/' + response.id, {replace: true, trigger: true});
+          Scrolls.router.navigate('pack/' + response.id, {replace: true, trigger: true});
         }
         Scrolls.router.deckCollection.fetch();
         Alert.success("Your pack was saved successfully!");
@@ -117,7 +117,7 @@ Scrolls.Views.DeckBuilderView = Backbone.View.extend({
       this.deck.destroy({
         wait: true,
         success: function() {
-          Scrolls.router.navigate('decks/new', {trigger: true, replace: true});
+          Scrolls.router.navigate('packs/mine', {trigger: true, replace: true});
         },
         error: function(model, response, opts) {
           Alert.error(response.responseJSON.error);

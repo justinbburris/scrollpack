@@ -18,7 +18,7 @@
 %script{type: "text/html", id: "deck_item"}
   %i.favorite-icon{class: '{{favoriteIcon}}'}
   %h3
-    %a{href: '#deck/{{id}}'} {{name}}
+    %a{href: '#pack/{{id}}'} {{name}}
   {{#resources}}
   %span.label{class: 'label-{{name}}'} {{name}}
   {{/resources}}
@@ -109,7 +109,7 @@
       %ul
         {{#decks}}
         %li
-          %a.open-pack{href: '#deck/{{id}}', data: {id: '{{id}}'}} {{attributes.name}}
+          %a.open-pack{href: '#pack/{{id}}', data: {id: '{{id}}'}} {{attributes.name}}
         {{/decks}}
     .modal-footer
       %button.btn.close-load Close

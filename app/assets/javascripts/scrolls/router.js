@@ -1,11 +1,11 @@
 Scrolls.Router = Backbone.Router.extend({
 
   routes: {
-    'decks/all': 'allDecks',
-    'decks/mine': 'myDecks',
-    'decks/favorites': 'favoriteDecks',
-    'decks/new': 'newDeck',
-    'deck/:id': 'showDeck',
+    'packs/all': 'allDecks',
+    'packs/mine': 'myDecks',
+    'packs/favorites': 'favoriteDecks',
+    'packs/new': 'newDeck',
+    'pack/:id': 'showDeck',
     '': 'index'
   },
 
