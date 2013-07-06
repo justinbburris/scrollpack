@@ -43,7 +43,7 @@ class DecksController < ApplicationController
 
     if @deck.save
       respond_to do |format|
-        format.json { render json: @deck }
+        format.json { render json: @deck, serializer: DeckSerializer  }
       end
     end
   end
@@ -60,7 +60,7 @@ class DecksController < ApplicationController
     deck.save
 
     respond_to do |format|
-      format.json { render json: deck }
+      format.json { render json: deck, serializer: DeckSerializer  }
     end
   end
 
@@ -74,6 +74,8 @@ class DecksController < ApplicationController
     deck = Deck.find(params[:id])
     deck.update_attribute('views', deck.views + 1)
     deck.save
+
+    render json: deck, serializer: DeckSerializer
   end
 
   private
