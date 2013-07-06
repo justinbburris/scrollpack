@@ -17,13 +17,13 @@
 
 %script{type: "text/html", id: "deck_item"}
   %li
-    <i class='favorite-icon
+    <i class='
     {{#favorite}}
     icon-star
     {{/favorite}}
     {{^favorite}}
     icon-star-empty can-favorite
-    {{/favorite}}' />
+    {{/favorite}} favorite-icon' />
     %h3
       %a{href: '#deck/{{id}}'} {{name}}
     {{#resources}}
